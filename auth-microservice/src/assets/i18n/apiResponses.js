@@ -25,4 +25,28 @@ module.exports = {
         message: i18n.__('Email is already in use'),
         code: 409,
     },
+    logoutSuccessfull: {
+        message: i18n.__('Logout successfull'),
+        code: 200,
+    },
+    logoutFailed: {
+        message: i18n.__('Logout failed'),
+        code: 500,
+    },
+    internalServerError: {
+        message: i18n.__('Internal server error'),
+        code: 500,
+    },
+    invalidPasswordResetToken: { 
+        message: i18n.__('Invalid password reset token'),
+        code: 401,
+    },
+    passwordResetTokenExpired: {
+        message: i18n.__('Password reset token expired'),
+        code: 401,
+    },
+    passwordResetSuccessful: {
+        message: i18n.__('Password reset successful'),
+        code: 200,
+    },
 }

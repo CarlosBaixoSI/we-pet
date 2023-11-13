@@ -19,9 +19,9 @@ const i18n = require("./services/i18n/translationService");
 require("./services/mongoose/mongooseService");
 
 const authRoutes = require('./routes/authRoutes');
-
+const passwordManagementRoutes = require('./routes/passwordManagementRoutes');
 app.use('/auth', authRoutes);
-
+app.use('/password',passwordManagementRoutes);
 app.listen(port, () => console.log(i18n.__("Listening on port %s", port)));
 
 module.exports = app;

@@ -13,5 +13,11 @@
 	"Email is already in use": "O email já está em uso",
 	"Listening on port %s": "Listening on port %s",
 	"Email already in use": "O email já está em uso",
-	"Email inválido": "Email inválido"
+	"Email inválido": "Email inválido",
+	"Logout successfull": "Logout successfull",
+	"Logout failed": "Logout failed",
+	"Internal server error": "Internal server error",
+	"Invalid password reset token": "Invalid password reset token",
+	"Password reset token expired": "Password reset token expired",
+	"Password reset successful": "Password reset successful"
 }

@@ -62,5 +62,19 @@ exports.signin = async (req, res) => {
     //create the token
     const token = jwt.sign({id: user._id}, JWT_SECRET, {expiresIn: 86400});
 
+    //store the token in the cookie
+    res.cookie("token", token, {httpOnly: true, maxAge: 86400});
+
     return res.status(apiResponses.loginSuccessfull.code).json({message: apiResponses.loginSuccessfull.message, token: token});
 };
+
+exports.signout = (req, res) => {
+  try {
+    res.clearCookie("token");
+    return res.status(apiResponses.logoutSuccessfull.code).json({message: apiResponses.logoutSuccessfull.message});
+  } catch (error) {
+    return res.status(apiResponses.logoutFailed.code).json({message: apiResponses.logoutFailed.message + ': ' + error});
+  }
+
+}
+
