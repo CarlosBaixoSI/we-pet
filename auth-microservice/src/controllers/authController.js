@@ -49,7 +49,7 @@ exports.signin = async (req, res) => {
   if (!user) {
     return res
       .status(apiResponses.invalidCredentials.code)
-      .json({ message: i18n.__(apiResponses.invalidCredentials.message) });
+      .json({ message: apiResponses.invalidCredentials.message});
   }
 
     //compare the password with the hashed password

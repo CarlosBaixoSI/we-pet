@@ -43,8 +43,8 @@ describe("authController", () => {
     describe("GET /login", () => {
         it("should return 200 status code", async () => {
         const res = await request(app).get("/auth/signin").send({
-            username: "admin@gmail.com",
-            password: "passwordadmin",
+            username: "carlosbaixo.si@gmail.com",
+            password: "teste",
         });
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty("token");
