@@ -19,11 +19,10 @@ jobs:
       with:
         node-version: 14.x
 
-    - name: Navigate to microservice directory
-      run: cd auth-microservice/src/
-
     - name: Install Dependencies
       run: npm install
+      working-directory: auth-microservice/src/
 
     - name: Run Lint
       run: npm run lint
+      working-directory: auth-microservice/src/
