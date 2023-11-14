@@ -19,6 +19,9 @@ jobs:
       with:
         node-version: 14.x
 
+    - name: Navigate to microservice directory
+      run: cd auth-microservice/src/
+
     - name: Install Dependencies
       run: npm install
 
