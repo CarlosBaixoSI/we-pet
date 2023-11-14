@@ -60,7 +60,7 @@ exports.signin = async (req, res) => {
     }
 
     //create the token
-    const token = jwt.sign({id: user._id}, JWT_SECRET, {expiresIn: 86400});
+    const token = jwt.sign({id: user._id, email: user.email}, JWT_SECRET, {expiresIn: 86400});
 
     //store the token in the cookie
     res.cookie("token", token, {httpOnly: true, maxAge: 86400});
@@ -76,5 +76,23 @@ exports.signout = (req, res) => {
     return res.status(apiResponses.logoutFailed.code).json({message: apiResponses.logoutFailed.message + ': ' + error});
   }
 
+}
+
+//add a route to test the auth microservice
+//this route can only be accessed by a logged in user
+exports.checkToken = (req, res) => {
+  const token = req.cookies?.token || req.headers['authorization'];
+  console.log(req.headers)
+  if(!token){
+    return res.status(apiResponses.notAuthenticated.code).json({message: apiResponses.notAuthenticated.message});
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    return res.status(apiResponses.loginSuccessfull.code).json({tokenid:decoded, message: apiResponses.loginSuccessfull.message});
+  } catch (error) {
+    return res.status(apiResponses.notAuthenticated.code).json({message: apiResponses.notAuthenticated.message});
+  }
 }
 

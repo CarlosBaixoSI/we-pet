@@ -19,5 +19,6 @@
 	"Internal server error": "Internal server error",
 	"Invalid password reset token": "Invalid password reset token",
 	"Password reset token expired": "Password reset token expired",
-	"Password reset successful": "Password reset successful"
+	"Password reset successful": "Password reset successful",
+	"Not autenticated": "Not autenticated"
 }

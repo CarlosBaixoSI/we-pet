@@ -7,4 +7,8 @@ const authController = require('../controllers/authController.js');
 router.post('/signup', authController.signup);
 router.get('/signin', authController.signin);
 router.post('/signout', authController.signout);
+
+//add a route to test the auth microservice
+//this route can only be accessed by a logged in user
+router.get('/checktoken', authController.checkToken);
 module.exports = router;

@@ -49,4 +49,8 @@ module.exports = {
         message: i18n.__('Password reset successful'),
         code: 200,
     },
+    notAuthenticated: {
+        message: i18n.__('Not autenticated'),
+        code: 401,
+    },
 }
