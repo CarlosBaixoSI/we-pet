@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  password: {
-    type: String,
-    required: true
-  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -21,9 +17,32 @@ const userSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now
+  },
+  phoneNumber: {
+    type: String,
+    required: true
+  },
+  address_line_1: {
+    type: String,
+    required: true
+  },
+  address_line_2: {
+    type: String,
+    required: false
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  postal_code: {
+    type: String,
+    required: true
+  },
+  user_id: {
+    type: String,
   }
 });
 
-const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);
+
