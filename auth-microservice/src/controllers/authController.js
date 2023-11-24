@@ -81,10 +81,15 @@ exports.signout = (req, res) => {
 //add a route to test the auth microservice
 //this route can only be accessed by a logged in user
 exports.checkToken = (req, res) => {
-  const token = req.cookies?.token || req.headers['authorization'];
-  console.log(req.headers)
-  if(!token){
+  let token = req.cookies?.token || req.headers['authorization'];
+
+  if (!token){
     return res.status(apiResponses.notAuthenticated.code).json({message: apiResponses.notAuthenticated.message});
+  }
+
+  //If token has 'Bearer', remove it
+  if(token.startsWith('Bearer ')){
+    token = token.slice(7, token.length);
   }
 
   try {
@@ -92,7 +97,7 @@ exports.checkToken = (req, res) => {
 
     return res.status(apiResponses.loginSuccessfull.code).json({tokenid:decoded, message: apiResponses.loginSuccessfull.message});
   } catch (error) {
-    return res.status(apiResponses.notAuthenticated.code).json({message: apiResponses.notAuthenticated.message});
+    return res.status(apiResponses.notAuthenticated.code).json({message: 'Error parsing your token' + ': ' + error });
   }
 }
 
