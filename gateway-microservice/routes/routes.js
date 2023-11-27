@@ -48,6 +48,18 @@ const ROUTES = [
         }
     },
     {
+        url: '/auth/isAdmin',
+        auth: false,
+        creditCheck: false,
+        proxy: {
+            target: "http://localhost:3001/auth/isAdmin",
+            changeOrigin: true,
+            pathRewrite: {
+                [`^/auth/isAdmin`]: '',
+            },
+        }
+    },
+    {
         url: '/password/reset/confirm',
         auth: false,
         creditCheck: false,
@@ -56,6 +68,18 @@ const ROUTES = [
             changeOrigin: true,
             pathRewrite: {
                 [`^/password/reset/confirm`]: '',
+            },
+        }
+    },
+    {
+        url: '/password/reset/request',
+        auth: false,
+        creditCheck: false,
+        proxy: {
+            target: "http://localhost:3001/password/reset/request",
+            changeOrigin: true,
+            pathRewrite: {
+                [`^/password/reset/request`]: '',
             },
         }
     }
