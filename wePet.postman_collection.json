@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "77c8b523-76f7-4304-9838-07afe760a9ca",
+		"name": "wePet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26729891"
+	},
+	"item": [
+		{
+			"name": "Auth Microservice",
+			"item": [
+				{
+					"name": "errors",
+					"item": [
+						{
+							"name": "Error 409 signup",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", () => {\r",
+											"      pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 700ms\", () => {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"jooaosilva\",\n    \"password\": \"jooaosilva\",\n    \"email\": \"jooaosilva.si@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlBase}}/auth/signup",
+									"host": [
+										"{{urlBase}}"
+									],
+									"path": [
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error 401 login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", () => {\r",
+											"      pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 700ms\", () => {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"password\": \"carlosbaixo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlBase}}/auth/signin",
+									"host": [
+										"{{urlBase}}"
+									],
+									"path": [
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error 401 confirmPasswordReset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", () => {\r",
+											"      pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 700ms\", () => {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"token\": \"dx6-s\",\n    \"newPassword\": \"testasdasde\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlBase}}/password/reset/confirm",
+									"host": [
+										"{{urlBase}}"
+									],
+									"path": [
+										"password",
+										"reset",
+										"confirm"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error 401 requestPasswordReset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", () => {\r",
+											"      pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 700ms\", () => {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"asd.si@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlBase}}/password/reset/request",
+									"host": [
+										"{{urlBase}}"
+									],
+									"path": [
+										"password",
+										"reset",
+										"request"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error 401 isAdmin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", () => {\r",
+											"      pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 700ms\", () => {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{urlBase}}/auth/isAdmin",
+									"host": [
+										"{{urlBase}}"
+									],
+									"path": [
+										"auth",
+										"isAdmin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"jooaosilva\",\n    \"password\": \"jooaosilva\",\n    \"email\": \"jooaosilva.si@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/auth/signup",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"carlosbaixo\",\n    \"password\": \"carlosbaixo\",\n    \"email\": \"carlosbaixo.si@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/auth/signout",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"password\": \"testasdasde\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/auth/signin",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "confirmPasswordReset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"token\": \"dx6-s\",\n    \"newPassword\": \"testasdasde\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/password/reset/confirm",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"password",
+								"reset",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{urlBase}}/auth/checktoken",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"checktoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "requestPasswordReset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/password/reset/request",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"password",
+								"reset",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isAdmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/auth/isAdmin",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"isAdmin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Mngmt Microservice",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBaseUserMngmt}}/users/getAll",
+							"host": [
+								"{{urlBaseUserMngmt}}"
+							],
+							"path": [
+								"users",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Info",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "urlBase",
+			"value": "http://127.0.0.1:3001/"
+		},
+		{
+			"key": "urlBaseUserMngmt",
+			"value": "http://127.0.0.1:3002"
+		}
+	]
+}
