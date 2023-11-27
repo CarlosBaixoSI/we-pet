@@ -4,9 +4,14 @@ const {ROUTES} = require("./routes/routes");
 
 const {setupLogging} = require("./logging/logging");
 const {setupProxies} = require("./proxy/proxy");
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('../swagger');
 
 const app = express();
-const port = 3002;
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+const port = process.env.PORT || 3000;
 
 setupLogging(app);
 setupProxies(app, ROUTES);

@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('../../swagger');
 
 //use .env file
 require('dotenv').config();
@@ -20,6 +22,7 @@ require("./services/mongoose/mongooseService");
 
 const authRoutes = require('./routes/authRoutes');
 const passwordManagementRoutes = require('./routes/passwordManagementRoutes');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/auth', authRoutes);
 app.use('/password',passwordManagementRoutes);
 app.listen(port, () => console.log(i18n.__("Listening on port %s", port)));
