@@ -36,7 +36,7 @@ router.get('/signin', authController.signin);
  *         description: Successful response
  */
 router.post('/signout', authController.signout);
-
+router.get('/isAdmin', authController.isAdmin);
 //add a route to test the auth microservice
 //this route can only be accessed by a logged in user
 

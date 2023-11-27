@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const messages = require("../assets/i18n/validationErrors");
 const i18n = require("../services/i18n/translationService");
+const Schema = mongoose.Schema;
 const UserSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, unique: true },
@@ -20,6 +21,7 @@ const UserSchema = new mongoose.Schema(
     created_at: { type: Date, default: Date.now },
     resetPasswordToken: { type: String },
     resetPasswordExpires: { type: Date },
+    role: { type: Schema.Types.ObjectId, ref: "Role" },
   },
   { collection: "users" }
 );

@@ -6,7 +6,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 // Endpoint to create a new user
-router.post('/user', userController.createUser);
+router.post('/create', userController.createUser);
 
 // Endpoint to get all users
 router.get('/getAll', userController.getAllUsers);
