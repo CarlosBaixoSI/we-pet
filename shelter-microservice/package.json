@@ -1,0 +1,26 @@
+{
+  "name": "shelter-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --timeout 10000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.1",
+    "i18n": "^0.15.1",
+    "mongoose": "^6.12.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0",
+    "should": "^13.2.3",
+    "supertest": "^6.2.3"
+  }
+}
