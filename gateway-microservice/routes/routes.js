@@ -1,4 +1,5 @@
 const local_3001 = "http://localhost:3001";
+const local_3003 = "http://localhost:3003";
 
 const ROUTES = [
     {
@@ -84,8 +85,21 @@ const ROUTES = [
                 [`^/password/reset/request`]: '',
             },
         }
+    },
+
+    //Animals microservice
+    {
+        url: '/animals',
+        auth: false,
+        creditCheck: false,
+        proxy: {
+            target: local_3003 + "/animals",
+            changeOrigin: true,
+            pathRewrite: {
+                [`^/animals`]: '',
+            },
+        }
     }
-    
 ]
 
 exports.ROUTES = ROUTES;
