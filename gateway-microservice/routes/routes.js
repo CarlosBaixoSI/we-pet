@@ -1,10 +1,12 @@
+const local_3001 = "http://localhost:3001";
+
 const ROUTES = [
     {
         url: '/auth/signup',
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/auth/signup",
+            target: local_3001 + "/auth/signup",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth/signup`]: '',
@@ -16,7 +18,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/auth/signin",
+            target: local_3001 + "/auth/signin",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth/signin`]: '',
@@ -28,7 +30,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/auth/signout",
+            target: local_3001 + "/auth/signout",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth/signout`]: '',
@@ -40,7 +42,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/auth/checktoken",
+            target: local_3001 + "/auth/checktoken",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth/checktoken`]: '',
@@ -52,7 +54,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/auth/isAdmin",
+            target: local_3001 + "/auth/isAdmin",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth/isAdmin`]: '',
@@ -64,7 +66,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/password/reset/confirm",
+            target: local_3001 + "/password/reset/confirm",
             changeOrigin: true,
             pathRewrite: {
                 [`^/password/reset/confirm`]: '',
@@ -76,7 +78,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: "http://localhost:3001/password/reset/request",
+            target: local_3001 + "/password/reset/request",
             changeOrigin: true,
             pathRewrite: {
                 [`^/password/reset/request`]: '',
