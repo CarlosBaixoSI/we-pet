@@ -22,6 +22,7 @@ oAuth2Client.setCredentials({ refresh_token: process.env.MAIL_REFRESH_TOKEN });
 module.exports.sendEmail = async (email, subject, text) => {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
+    console.log(accessToken);
     const transport = nodemailer.createTransport({
         service: 'gmail',
         auth: {
