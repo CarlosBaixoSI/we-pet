@@ -163,7 +163,7 @@ async function getUserRole(user) {
     console.log('admin role', adminRole)
     return adminRole._id;
   } 
-    const userRole = await role.findOne({ name: "user" });
+    const userRole = await RoleModel.findOne({ name: "user" });
     return userRole._id;
   
 }
