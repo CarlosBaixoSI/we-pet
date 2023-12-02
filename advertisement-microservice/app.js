@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+// Import Swagger
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("../swagger");
+
 // Load environment variables from .env file
 require('dotenv').config();
 
@@ -18,6 +22,9 @@ const port = process.env.AD_MGMT_PORT || 3004;
 
 // Use the advertisement routes for requests starting with /advertisements
 app.use("/advertisements", advertisementRouter);
+
+// Add route  for Swagger documentation
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
 // port should be 3004
