@@ -1,4 +1,13 @@
 # we-pet
+This repository contains a collection of Node.js microservices designed to work together in a distributed architecture.
+
+## Overview
+The project is structured as follows:
+- **Gateway Service**: Serves as the entry point to the rest of the microservices, responsible for managing and directing incoming requests to the appropriate microservice. It acts as a centralized point of interaction for clients or users, providing a unified interface while abstracting the complexities of the underlying microservices infrastructure
+- **Auth Service**: Responsible for handling user authentication and access management.
+- **User Management Service**: Manages user profile information.
+- **Animal Management Service**: Handles information about animals.
+- **Advertisement Management Service**: Operates as a centralized platform to streamline the management of advertisements
 
 ## Install test dependencies:
 - npm install --save-dev jest
