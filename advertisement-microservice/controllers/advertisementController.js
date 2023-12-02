@@ -25,6 +25,7 @@ exports.createAdvertisement = async (req, res) => {
   try {
     const advertisement = await advertisementService.createAdvertisement(req.body);
     res.json({ data: advertisement, status: "Success" });
+    //TODO: check if user_id exists before creating
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -78,3 +79,17 @@ exports.deleteAdvertisement = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+/**
+ * Retrieves an advertisement by user id.
+ * @param {Object} req - The request object
+ * @param {Object} res -  The response object
+ */
+exports.getAdvertisementByUserID = async (req, res) => {
+  try {
+    const advertisement = await advertisementService.getAdvertisementByUserID(req.params.id);
+    res.json({ data: advertisement, status: "Success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}

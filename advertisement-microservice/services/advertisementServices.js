@@ -18,3 +18,7 @@ exports.updateAdvertisement = async (id, advertisement) => {
 exports.deleteAdvertisement = async (id) => {
   return await Advertisement.findByIdAndDelete(id);
 };
+
+exports.getAdvertisementByUserID = async (id) => {
+  return await Advertisement.find({ user_id: id });
+}
