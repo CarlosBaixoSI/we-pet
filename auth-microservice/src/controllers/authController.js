@@ -5,7 +5,7 @@ exports.signup = async (req, res) => {
     const userId = await authService.signUp(req.body);
     return res.json({ data: userId });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -20,7 +20,7 @@ exports.signin = async (req, res) => {
     });
     return res.status(200).json({ data: token, message: "Login successful" });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -28,12 +28,11 @@ exports.signout = (req, res) => {
   try {
     res.clearCookie("token");
     return res
-      .status(apiResponses.logoutSuccessfull.code)
-      .json({ message: apiResponses.logoutSuccessfull.message });
+      .status(200).json({ message: "Logout successful" });
   } catch (error) {
     return res
-      .status(apiResponses.logoutFailed.code)
-      .json({ message: apiResponses.logoutFailed.message + ": " + error });
+      .status(500)
+      .json({ error: "Logout failed" + ": " + error.message });
   }
 };
 
@@ -71,6 +70,6 @@ exports.isAdmin = async (req, res) => {
     const isAdmin = await authService.isAdmin(token);
     return res.status(200).json({ data: isAdmin, message: "Success" });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ error: err.message });
   }
 };
