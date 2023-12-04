@@ -27,7 +27,7 @@ app.use("/donations", advertisementRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
-// port should be 3004
+// port should be 3005
 app.listen(port, () => {
   console.log("Server is running on port %s", port);
 });
