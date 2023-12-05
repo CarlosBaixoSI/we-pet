@@ -7,6 +7,544 @@
 	},
 	"item": [
 		{
+			"name": "Advertisements Microservice",
+			"item": [
+				{
+					"name": "Get All advertisements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/advertisements",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get advertisements id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/advertisements/656e19638f706649ff725f65",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements",
+								"656e19638f706649ff725f65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get advertisements by user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/advertisements/user/656a22e0ded04b4b42b5e8e5",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements",
+								"user",
+								"656a22e0ded04b4b42b5e8e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete advertisement with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/advertisements/656e18bf8f706649ff725f5d",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements",
+								"656e18bf8f706649ff725f5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update advertisements with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"tes1t\",\r\n  \"city\": \"test1\",\r\n  \"rating_avg\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/advertisements/656e18bf8f706649ff725f5d",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements",
+								"656e18bf8f706649ff725f5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an advertisements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"test\",\r\n  \"city\": \"test\",\r\n  \"rating_avg\": 1,\r\n  \"createdAt\": \"2023-05-25\",\r\n  \"user_id\": \"656a22e0ded04b4b42b5e8e5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/advertisements",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"advertisements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Animal Microservice",
+			"item": [
+				{
+					"name": "Get All Animals",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/animals",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"animals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Animal with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/animals/656e219c540b86fc71f0308a",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"animals",
+								"656e219c540b86fc71f0308a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Animal with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/animals/6567732028e0100ca9de872c",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"animals",
+								"6567732028e0100ca9de872c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Animals with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"teste\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"teste\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/animals/656e219c540b86fc71f0308a",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"animals",
+								"656e219c540b86fc71f0308a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Animal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"minie\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"minie\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/animals",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"animals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Auth Microservice",
 			"item": [
 				{
@@ -248,7 +786,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Successful POST request\", () => {\r",
-									"      pm.response.to.have.status(201);\r",
+									"      pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response time is less than 700ms\", () => {\r",
@@ -308,7 +846,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"carlosbaixo\",\n    \"password\": \"carlosbaixo\",\n    \"email\": \"carlosbaixo.si@gmail.com\"\n}",
+							"raw": "{\n    \"username\": \"jooaosilva\",\n    \"password\": \"jooaosilva\",\n    \"email\": \"jooaosilva.si@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,7 +893,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"password\": \"testasdasde\"\n}",
+							"raw": "{\n    \"username\": \"jooaosilva.si@gmail.com\",\n    \"password\": \"testasdasde\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -399,7 +937,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\",\n    \"token\": \"dx6-s\",\n    \"newPassword\": \"testasdasde\"\n}",
+							"raw": "{\n    \"username\": \"jooaosilva.si@gmail.com\",\n    \"token\": \"zrrz\",\n    \"newPassword\": \"testasdasde\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -456,8 +994,8 @@
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "raw",
+							"raw": ""
 						},
 						"url": {
 							"raw": "{{urlBase}}/auth/checktoken",
@@ -496,7 +1034,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"carlosbaixo.si@gmail.com\"\n}",
+							"raw": "{\n    \"username\": \"jooaosilva.si@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -536,19 +1074,31 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU2ZTIxYzU2ODZkYzYwZDVlZWI3OTEwIiwicm9sZV9pZCI6IjY1NmUxZmY4Njg2ZGM2MGQ1ZWViNzkwYiIsImlhdCI6MTcwMTcxNzcwMywiZXhwIjoxNzAxODA0MTAzfQ.Esv1vKVNVkMEKyidQRyWRkemdOyaE6tOhVbfZjRW1jo",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{urlBase}}/auth/isAdmin",
 							"host": [
@@ -565,10 +1115,27 @@
 			]
 		},
 		{
-			"name": "User Mngmt Microservice",
+			"name": "Donations Microservice",
 			"item": [
 				{
-					"name": "Get All Users",
+					"name": "Get All donations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -583,63 +1150,36 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{urlBaseUserMngmt}}/users/getAll",
-							"host": [
-								"{{urlBaseUserMngmt}}"
-							],
-							"path": [
-								"users",
-								"getAll"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create User Info",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Animal Microservice",
-			"item": [
-				{
-					"name": "Get All Animals",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{urlBase}}/animals",
+							"raw": "{{urlBase}}/donations",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
-								"animals"
+								"donations"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get Animal with id",
+					"name": "Get donations id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -654,20 +1194,129 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/animals/6567732028e0100ca9de872c",
+							"raw": "{{urlBase}}/donations/656e1b7f7aa868a4fb6711b2",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
-								"animals",
-								"6567732028e0100ca9de872c"
+								"donations",
+								"656e1b7f7aa868a4fb6711b2"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete Animal with id",
+					"name": "Get donations by user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/donations/user/656a22e0ded04b4b42b5e8e5",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"donations",
+								"user",
+								"656a22e0ded04b4b42b5e8e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get donations by shelter id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/donations/shelter/656a22e0ded04b4b42b5e8e5",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"donations",
+								"shelter",
+								"656a22e0ded04b4b42b5e8e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete donations with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -682,52 +1331,37 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/animals/6567732028e0100ca9de872c",
+							"raw": "{{urlBase}}/donations/656e18bf8f706649ff725f5d",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
-								"animals",
-								"6567732028e0100ca9de872c"
+								"donations",
+								"656e18bf8f706649ff725f5d"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update Animals with id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"teste\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"teste\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}"
-						},
-						"url": {
-							"raw": "{{urlBase}}/animals/6567732028e0100ca9de872c",
-							"host": [
-								"{{urlBase}}"
-							],
-							"path": [
-								"animals",
-								"6567732028e0100ca9de872c"
-							]
+					"name": "Create an donations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create an Animal",
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -743,7 +1377,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"minie\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"minie\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"raw": "{\r\n  \"amount\": 1,\r\n  \"shelter_id\": \"656a22e0ded04b4b42b5e8e5\",\r\n  \"createdAt\": \"2023-05-25\",\r\n  \"user_id\": \"656a22e0ded04b4b42b5e8e5\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -751,12 +1385,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{urlBase}}/animals",
+							"raw": "{{urlBase}}/donations",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
-								"animals"
+								"donations"
 							]
 						}
 					},
@@ -769,6 +1403,23 @@
 			"item": [
 				{
 					"name": "Get All shelters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -796,6 +1447,23 @@
 				},
 				{
 					"name": "Get shelterwith id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -824,6 +1492,23 @@
 				},
 				{
 					"name": "Delete Animal with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -838,12 +1523,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/animals/6567732028e0100ca9de872c",
+							"raw": "{{urlBase}}/shelters/6567732028e0100ca9de872c",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
-								"animals",
+								"shelters",
 								"6567732028e0100ca9de872c"
 							]
 						}
@@ -852,6 +1537,23 @@
 				},
 				{
 					"name": "Update Animals with id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -884,6 +1586,23 @@
 				},
 				{
 					"name": "Create an shelter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -913,6 +1632,100 @@
 							],
 							"path": [
 								"shelters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Mngmt Microservice",
+			"item": [
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/users/getAll",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"users",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"      pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 700ms\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/users/create",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"users",
+								"create"
 							]
 						}
 					},
