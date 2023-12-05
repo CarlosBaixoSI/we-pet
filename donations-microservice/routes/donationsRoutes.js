@@ -16,12 +16,14 @@ const {
 *
 * /donations:
 *   get:
+*     tags: [Donations]
 *     summary: Get all donations
 *     description: Retrieve a list of all donations.
 *     responses:
 *       200:
 *         description: A list of donations.
 *   post:
+*     tags: [Donations]
 *     summary: Create a new donation
 *     description: Create a new donation.
 *     responses:
@@ -29,6 +31,7 @@ const {
 *         description: The created donation.
 * /donations/{id}:
 *   get:
+*     tags: [Donations]
 *     summary: Get a donation by ID
 *     description: Retrieve a donation by its ID.
 *     parameters:
@@ -42,6 +45,7 @@ const {
 *       200:
 *         description: The requested donation.
 *   delete:
+*     tags: [Donations]
 *     summary: Delete a donation
 *     description: Delete a donation.
 *     parameters:
@@ -56,6 +60,7 @@ const {
 *         description: The deleted donation.
 * /donations/user/{id}:
 *   get:
+*     tags: [Donations]
 *     summary: Get donations by user ID
 *     description: Retrieve donations associated with a user by their ID.
 *     parameters:
@@ -70,6 +75,7 @@ const {
 *         description: A list of donations associated with the user.
 * /donations/shelter/{id}:
 *   get:
+*     tags: [Donations]
 *     summary: Get donations by shelter ID
 *     description: Retrieve donations associated with a shelter by their ID.
 *     parameters:

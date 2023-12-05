@@ -57,7 +57,7 @@ const {
  *           type: string
  *     responses:
  *       200:
- *         description: The updated user.
+ *         description: Updated user.
  *   delete:
  *     tags: [Users]
  *     summary: Delete user
@@ -71,7 +71,7 @@ const {
  *           type: string
  *     responses:
  *       200:
- *         description: The deleted user.
+ *         description: Deleted user.
  */
 const router = express.Router();
 

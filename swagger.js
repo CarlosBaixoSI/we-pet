@@ -1,17 +1,35 @@
-const swaggerJSDoc = require('swagger-jsdoc');
+const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
+const app = express();
+
+// Define the options for Swagger JSdoc
 const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'WePet API',
+      title: 'Wepet Microservices API Documentation',
       version: '1.0.0',
-      description: 'Your API Description',
     },
   },
-  apis: ['./routes/*.js'], // Path to the API routes folder
+  apis: [
+    'advertisement-microservice/routes/*.js',
+    'donations-microservice/routes/*.js',
+    'animal-microservice/routes/*.js',
+    'user-microservice/routes/*.js',
+    'auth-microservice/src/routes/*.js',
+  ],
 };
 
-const swaggerSpec = swaggerJSDoc(options);
+// Generate the combined Swagger specification object
+const combinedSwaggerSpec = swaggerJsdoc(options);
 
-module.exports = swaggerSpec;
+// Serve the combined Swagger documentation using Swagger UI Express
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(combinedSwaggerSpec));
+
+// Start the server
+const port = 3006;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

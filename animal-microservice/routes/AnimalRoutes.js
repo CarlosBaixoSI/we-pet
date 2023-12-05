@@ -17,14 +17,14 @@ const router = express.Router();
  *
  * /animals:
  *   get:
- *     tags: [Animal]
+ *     tags: [Animals]
  *     summary: Get all animals
  *     description: Retrieve a list of all animals.
  *     responses:
  *       200:
  *         description: A list of animals.
  *   post:
- *     tags: [Animal]
+ *     tags: [Animals]
  *     summary: Create a new animal
  *     description: Create a new animal.
  *     responses:
@@ -32,7 +32,7 @@ const router = express.Router();
  *         description: The created animal.
  * /animals/{id}:
  *   get:
- *     tags: [Animal]
+ *     tags: [Animals]
  *     summary: Get an animal by ID
  *     description: Retrieve an animal by its ID.
  *     parameters:
@@ -48,7 +48,7 @@ const router = express.Router();
  *       404:
  *         description: The animal was not found.
  *   put:
- *     tags: [Animal]
+ *     tags: [Animals]
  *     summary: Update an animal
  *     description: Update an animal.
  *     parameters:
@@ -64,7 +64,7 @@ const router = express.Router();
  *       404:
  *         description: The animal was not found.
  *   delete:
- *     tags: [Animal]
+ *     tags: [Animals]
  *     summary: Delete an animal
  *     description: Delete an animal.
  *     parameters:
