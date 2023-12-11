@@ -1,4 +1,6 @@
 const advertisementService = require("../services/advertisementServices");
+const axios = require("axios");
+const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
 /**
  * Retrieve all advertisements
@@ -23,9 +25,16 @@ exports.getAllAdvertisements = async (req, res) => {
  */
 exports.createAdvertisement = async (req, res) => {
   try {
-    const advertisement = await advertisementService.createAdvertisement(req.body);
-    res.json({ data: advertisement, status: "Success" });
-    //TODO: check if user_id exists before creating
+    // forward the user id to the gateway
+    const response = await axios.get(
+      `http://localhost:${gatewayPort}/userExists/${req.body.user_id}`,
+    )
+    if (!response.data.user_exists) {
+      res.status(400).json({ error: "User does not exist" });
+    }else {
+      const advertisement = await advertisementService.createAdvertisement(req.body);
+      res.json({ data: advertisement, status: "Success" });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
