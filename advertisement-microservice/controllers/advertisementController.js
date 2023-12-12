@@ -64,9 +64,14 @@ exports.getAdvertisementByID = async (req, res) => {
  */
 exports.updateAdvertisement = async (req, res) => {
   try {
-    await advertisementService.updateAdvertisement(req.params.id, req.body);
-    const updated_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
-    res.json({ data: updated_advertisement, status: "Success" });
+    const check_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
+    if (!check_advertisement) {
+      res.status(400).json({ error: "Advertisement does not exist" });
+    }else{
+      await advertisementService.updateAdvertisement(req.params.id, req.body);
+      const updated_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
+      res.json({ data: updated_advertisement, status: "Success" });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -82,8 +87,12 @@ exports.updateAdvertisement = async (req, res) => {
 exports.deleteAdvertisement = async (req, res) => {
   try {
     const deleted_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
-    await advertisementService.deleteAdvertisement(req.params.id);
-    res.json({data: deleted_advertisement, status: "Successfully deleted" });
+    if (!deleted_advertisement) {
+      res.status(400).json({ error: "Advertisement does not exist" });
+    } else {
+      await advertisementService.deleteAdvertisement(req.params.id);
+      res.json({data: deleted_advertisement, status: "Successfully deleted" });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
