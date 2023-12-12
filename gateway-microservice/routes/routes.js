@@ -13,28 +13,24 @@ list_of_ports = [auth_path, users_path, animals_path, advertisements_path, donat
 const router = express.Router();
 
 router.get("/userExists/:id", async (req, res) => {
+    let res_port = null;
+    // check which port is requesting
+    for (const port of list_of_ports) {
+        try {
+            await axios.get(`${port}`);
+            res_port = port;
+        }catch{
+            continue;
+        }
+    }
+
+    // ask the user microservice if the user exists
     try {
-        let res_port = null;
-        // check which port is requesting
-        for (const port of list_of_ports) {
-            try {
-                await axios.get(`${port}`);
-                res_port = port;
-            }catch{
-                continue;
-            }
-        }
-
-        // ask the user microservice if the user exists
-        const user_response = await axios.get(`${users_path}/${req.params.id}`);
-
-        if (user_response.data){
-            res.status(200).json({ user_exists: true });
-        } else {
-            res.status(200).json({ user_exists: false });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+        await axios.get(`${users_path}/${req.params.id}`);
+        res.status(200).json({ user_exists: true });
+    }catch{
+        res.status(200).json({ user_exists: false });
+        return;
     }
 });
 
