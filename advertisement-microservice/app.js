@@ -18,7 +18,7 @@ app.use(express.json());
 const advertisementRouter = require("./routes/advertisementRoutes");
 
 // Start listening on the specified port (AD_MGMT_PORT from .env file or 3004)
-const port = process.env.AD_MGMT_PORT || 3004;
+const port = process.env.ADVERTISEMENT_PORT || 3004;
 
 // Use the advertisement routes for requests starting with /advertisements
 app.use("/advertisements", advertisementRouter);

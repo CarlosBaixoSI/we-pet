@@ -13,13 +13,13 @@ RUN npm install
 COPY . .
 
 # Choose the port for this microsservice
-EXPOSE 3004
+EXPOSE 3005
 
 # Set environment variables
 ENV GATEWAY_PORT=3000
-ENV ADVERTISEMENT_PORT=3004
+ENV DONATIONS_PORT=3005
 ENV SECRET_KEY=wepet2023
-ENV ATLAS_URL=mongodb://host.docker.internal:27017/advertisements?authSource=admin
+ENV ATLAS_URL=mongodb://host.docker.internal:27017/donations?authSource=admin
 ENV JWT_SECRET=wepet2023
 
 # Start the application
