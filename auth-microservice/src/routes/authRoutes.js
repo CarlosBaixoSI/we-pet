@@ -156,4 +156,7 @@ router.get('/isAdmin', authController.isAdmin);
  *               - password
  */
 router.get('/checktoken', authController.checkToken);
+
+
+router.get('/', authController.getAllUsers);
 module.exports = router;

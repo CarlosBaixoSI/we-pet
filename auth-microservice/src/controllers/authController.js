@@ -1,5 +1,7 @@
 const authService = require("../services/AuthService");
-
+const apiResponses = require("../assets/i18n/apiResponses");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
 exports.signup = async (req, res) => {
   try {
     const userId = await authService.signUp(req.body);
@@ -38,25 +40,17 @@ exports.signout = (req, res) => {
 
 //add a route to test the auth microservice
 //this route can only be accessed by a logged in user
-exports.checkToken = (req, res) => {
+exports.checkToken = async (req, res) => {
   let token = req.cookies?.token || req.headers["authorization"];
+  try {
+  const decodedToken = await authService.checkToken(token);
 
-  if (!token) {
+  if (!decodedToken) {
     return res
       .status(apiResponses.notAuthenticated.code)
       .json({ message: apiResponses.notAuthenticated.message });
   }
-
-  //If token has 'Bearer', remove it
-  if (token.startsWith("Bearer ")) {
-    token = token.slice(7, token.length);
-  }
-
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    let response = { userId: decoded.id, role: decoded.role };
-
-    return res.status(200).json(response);
+  return res.status(200).json(decodedToken);
   } catch (error) {
     return res
       .status(apiResponses.notAuthenticated.code)
@@ -73,3 +67,30 @@ exports.isAdmin = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await authService.getAllUsers();
+    return res.status(200).json({ data: users, message: "Success" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await authService.getUserById(req.params.id);
+    return res.status(200).json({ data: user, message: "Success" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const user = await authService.deleteUser(req.params.id);
+    return res.status(200).json({ data: user, message: "Success" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}

@@ -89,6 +89,34 @@ exports.isAdmin = async (token) => {
   }
 }
 
+exports.signOut = async(res) => {
+  try {
+    res.clearCookie("token");
+    return res
+      .status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: "Logout failed" + ": " + error.message });
+  }
+}
+
+exports.checkToken = async(encryptedToken) => {
+  //If token has 'Bearer', remove it
+  if (encryptedToken.startsWith("Bearer ")) {
+    encryptedToken = encryptedToken.slice(7, encryptedToken.length);
+  }
+
+  try {
+    const decoded = jwt.verify(encryptedToken, JWT_SECRET);
+    let response = { userId: decoded.user_id, roleId: decoded.role_id };
+
+    return response;
+  } catch (error) {
+    return null;
+  }
+}
+
 //Aux functions
 async function getUserRole(user) {
   if (
@@ -102,3 +130,5 @@ async function getUserRole(user) {
   const userRole = await RoleModel.findOne({ name: "user" });
   return userRole._id;
 }
+
+
