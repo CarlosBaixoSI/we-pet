@@ -11,6 +11,15 @@ exports.getAllAnimals = async (req, res) => {
   }
 };
 
+exports.getAnimalsByShelterId = async (req, res) => {
+  try {
+    const animals = await animalService.getAnimalsByShelterId(req.params.id);
+    res.json({ data: animals, status: "Success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.createAnimal = async (req, res) => {
   try {
     try {
