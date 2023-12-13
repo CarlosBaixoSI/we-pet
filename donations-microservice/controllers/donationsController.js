@@ -1,4 +1,6 @@
 const donationsService = require("../services/donationsService");
+const axios = require("axios");
+const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
 exports.getAllDonations = async (req, res) => {
     try {
@@ -11,8 +13,16 @@ exports.getAllDonations = async (req, res) => {
 
 exports.insertDonation = async (req, res) => {
     try {
-        const donation = await donationsService.insertDonation(req.body);
-        res.json({ data: donation, status: "Success" });
+        // forward the user id to the gateway
+        const response = await axios.get(
+            `http://localhost:${gatewayPort}/userExists/${req.body.user_id}`,
+        )
+        if (!response.data.user_exists) {
+            res.status(400).json({ error: "User does not exist" });
+        }else {
+            const donation = await donationsService.insertDonation(req.body);
+            res.json({ data: donation, status: "Success" });
+        }
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
