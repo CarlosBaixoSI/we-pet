@@ -3,7 +3,7 @@ const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
 exports.getIsUserAdmin = async (token) => {
     try {
-        const response = await axios.get(`http://localhost:${gatewayPort}/users/isAdmin`, {
+        const response = await axios.get(`http://localhost:${gatewayPort}/auth/isAdmin`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
