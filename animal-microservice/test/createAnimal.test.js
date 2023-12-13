@@ -11,6 +11,8 @@ const animalData = {
     size: "test",
     animal_type: "test",
     breed: "test",
+    user_id: "test",
+    shelter_id: "test"
 };
 
 test("should create an animal", async () => {
