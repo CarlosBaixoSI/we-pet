@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('../swagger');
+//const swaggerUi = require('swagger-ui-express');
+//const swaggerSpec = require('../swagger');
 const shelterRouter = require("./routes/ShelterRoutes");
 require('dotenv').config();
 
@@ -13,7 +13,7 @@ require("./services/mongoose/mongooseService");
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/shelters", shelterRouter);
 
 app.listen(port, () => console.log(i18n.__("Listening on port %s", port)));
