@@ -2,8 +2,12 @@ const donationsService = require("../services/donationsService");
 const axios = require("axios");
 const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
+const userService = require("../services/userService"); // Import userService
 exports.getAllDonations = async (req, res) => {
     try {
+
+        let isAdmin = await userService.getIsUserAdmin(req.headers.authorization); // Get user role
+        console.log(isAdmin);
         const donations = await donationsService.getAllDonations();
         res.json({ data: donations, status: "Success" });
     } catch (err) {
