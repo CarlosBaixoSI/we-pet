@@ -17,6 +17,8 @@ const expectedData = {
     size: "test",
     animal_type: "test",
     breed: "test",
+    user_id: "test",
+    shelter_id: "test"
 };
 
 const error = new Error('Database error');

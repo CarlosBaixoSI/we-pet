@@ -6,8 +6,8 @@ const userService = require("../services/userService"); // Import userService
 exports.getAllDonations = async (req, res) => {
     try {
 
-        let isAdmin = await userService.getIsUserAdmin(req.headers.authorization); // Get user role
-        console.log(isAdmin);
+        // let isAdmin = await userService.getIsUserAdmin(req.headers.authorization); // Get user role
+        // console.log(isAdmin);
         const donations = await donationsService.getAllDonations();
         res.json({ data: donations, status: "Success" });
     } catch (err) {
@@ -17,19 +17,33 @@ exports.getAllDonations = async (req, res) => {
 
 exports.insertDonation = async (req, res) => {
     try {
-        // forward the user id to the gateway
-        const response = await axios.get(
-            `http://localhost:${gatewayPort}/userExists/${req.body.user_id}`,
-        )
-        if (!response.data.user_exists) {
-            res.status(400).json({ error: "User does not exist" });
-        }else {
-            const donation = await donationsService.insertDonation(req.body);
-            res.json({ data: donation, status: "Success" });
+        try {
+          // forward the user id to the gateway
+          const user_idCheck = await axios.get(`http://localhost:${gatewayPort}/users/${req.body.user_id}`,)
+    
+          if (!user_idCheck.data) {
+            return res.status(400).json({ error: "User does not exist" });
+          }
+    
+        } catch {
+          return res.status(400).json({ error: "User does not exist" });
         }
-    } catch (err) {
+        try {
+          // forward the shelter id to the gateway
+          const shelter_idCheck = await axios.get(`http://localhost:${gatewayPort}/shelters/${req.body.shelter_id}`,)
+    
+          if (!shelter_idCheck.data) {
+            res.status(400).json({ error: "Shelter does not exist" });
+          }
+    
+        } catch {
+          return res.status(400).json({ error: "Shelter does not exist" });
+        }
+        const donation = await donationsService.insertDonation(req.body);
+        res.json({ data: donation, status: "Success" });
+      } catch (err) {
         res.status(500).json({ error: err.message });
-    }
+      }
 }
 
 exports.getDonationByID = async (req, res) => {

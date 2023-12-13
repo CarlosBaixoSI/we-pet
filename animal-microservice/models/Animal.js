@@ -16,6 +16,16 @@ const animalSchema = new Schema({
         type: String,
         enum: Object.values(GenderEnum) 
     },
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    shelter_id: {
+      type: Schema.Types.ObjectId,
+      ref: "Shelter",
+      required: true,
+    },
     size: String,
     animal_type: String,
     breed: String,

@@ -8,6 +8,7 @@ const advertisements_path = "http://localhost:3004/advertisements/";
 const donations_path = "http://localhost:3005/donations/";
 const shelters_path = "http://localhost:3006/shelters/";
 const local_3001 = "http://localhost:3001";
+
 //User management microservice
 const local_3002 = "http://localhost:3002";
 //Animals microservice
@@ -22,31 +23,7 @@ list_of_ports = [auth_path, users_path, animals_path, advertisements_path, donat
 
 const router = express.Router();
 
-router.get("/userExists/:id", async (req, res) => {
-    let res_port = null;
-    // check which port is requesting
-    for (const port of list_of_ports) {
-        try {
-            await axios.get(`${port}`);
-            res_port = port;
-        }catch{
-            continue;
-        }
-    }
-
-    // ask the user microservice if the user exists
-    try {
-        await axios.get(`${users_path}/${req.params.id}`);
-        res.status(200).json({ user_exists: true });
-    }catch{
-        res.status(200).json({ user_exists: false });
-        return;
-    }
-});
-
 //module.exports = router;
-
-
 
 const ROUTES = [
     {

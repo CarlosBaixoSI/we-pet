@@ -29,7 +29,7 @@ const combinedSwaggerSpec = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(combinedSwaggerSpec));
 
 // Start the server
-const port = 3007;
+const port = 3020;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
