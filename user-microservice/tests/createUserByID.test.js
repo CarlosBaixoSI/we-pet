@@ -1,4 +1,4 @@
-const {createUser} = require("../controllers/userController");
+const {createUserByID} = require("../controllers/userController");
 const UserModel = require("../models/userModel");
 
 jest.mock("../models/userModel");
@@ -25,7 +25,7 @@ test("should create an user", async () => {
     // Mock the create method of the UserModel to return the created user data
     UserModel.create.mockResolvedValue(userData);
 
-    await createUser(req, res);
+    await createUserByID(req, res);
 
     expect(res.json).toHaveBeenCalledWith({ data: userData, status: "Success" });
     expect(res.status).not.toHaveBeenCalled();
@@ -45,7 +45,7 @@ test("should handle error while creating an user", async () => {
 
     UserModel.create.mockRejectedValue(new Error(errorMessage));
 
-    await createUser(req, res);
+    await createUserByID(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.status().json).toHaveBeenCalledWith({ error: errorMessage });

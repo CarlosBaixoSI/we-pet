@@ -34,13 +34,16 @@ test("should insert donation", async () => {
         status: jest.fn(() => res)
     };
 
+    mock
+      .onGet(`http://localhost:3000/shelters/${req.body.shelter_id}`)
+      .reply(200, { data: "mocked response" });
+
+    mock.onGet(`http://localhost:3000/users/${req.body.user_id}`).reply(200, {
+      data: "mocked response",
+    });
+
     // Mock the save() method to return the response variable
     DonationModel.create.mockResolvedValue(donationData["data"]);
-
-    // Mock the gateway call to check if the user exists
-    mock.onGet(`http://localhost:3000/userExists/${donationData.data.user_id}`).reply(200, {
-        user_exists: true,
-    });
 
     await insertDonation(req, res);
 

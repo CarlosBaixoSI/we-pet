@@ -57,9 +57,21 @@ exports.getDonationByID = async (req, res) => {
 };
 
 exports.deleteDonation = async (req, res) => {
+  let token = req.cookies?.token || req.headers["authorization"];
   try {
-    const donation = await donationsService.deleteDonation(req.params.id);
-    res.json({ data: donation, status: "Success" });
+    const role_info = await axios.get(
+      `http://localhost:${gatewayPort}/auth/getRole`,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+
+    if (role_info.data.role === "admin") {
+      const donation = await donationsService.deleteDonation(req.params.id);
+      res.json({ data: donation, status: "Success" });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

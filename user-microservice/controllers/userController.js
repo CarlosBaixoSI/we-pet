@@ -46,25 +46,24 @@ exports.getUserByID = async (req, res) => {
  * @returns {Promise<void>} - A promise that resolves when the user is updated
  */
 exports.updateUser = async (req, res) => {
-  try {
     let token = req.cookies?.token || req.headers["authorization"];
     try {
       const user_info = await axios.get(`http://localhost:${gatewayPort}/auth/getUserEmail`, {
         headers: {
-          Authorization: token
+          'authorization': token
         }
       });
-
-      await userService.updateUser(user_info.data.email, req.body);
-      const user = await userService.getUserByEmail(user_info.data.email);
-      res.json({ data: user, status: "Success" });
+      try{
+        await userService.updateUser(user_info.data.email, req.body);
+        const user = await userService.getUserByEmail(user_info.data.email);
+        res.json({ data: user, status: "Success" });
+      }catch{
+        res.status(500).json({ error: "Failed to update the user" });
+      }
     }catch (err) {
-      res.status(500).json({ error: err.message });
+      res.status(500).json({ error: "Failed to update the user" });
     }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
   }
-}
 
 /**
  *

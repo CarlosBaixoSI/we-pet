@@ -65,7 +65,7 @@ exports.deleteShelter = async (req, res) => {
         },
       }
     );
-    console.log(role_info);
+
     if (role_info.data.role === "admin") {
       const shelter = await shelterService.deleteShelter(req.params.id);
       return res.json({ data: shelter, status: "success" });

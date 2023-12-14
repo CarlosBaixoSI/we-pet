@@ -1,7 +1,12 @@
+const MockAdapter = require("axios-mock-adapter");
+const axios = require("axios");
 const {deleteAdvertisement} = require("../controllers/advertisementController");
 const AdvertisementModel = require("../models/advertisementModel");
 
 jest.mock("../models/advertisementModel");
+
+// Create a new instance of the mock adapter
+const mock = new MockAdapter(axios);
 
 const advertisementData = {
     _id: "123",
@@ -16,6 +21,9 @@ test("should delete an advertisement", async () => {
     const req = {
         params: {
             id: advertisementData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
@@ -27,6 +35,8 @@ test("should delete an advertisement", async () => {
     // Mock the findByIdAndDelete method of the AdvertisementModel to return the deleted advertisement data
     AdvertisementModel.findByIdAndDelete.mockResolvedValue(advertisementData);
 
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
+
     await deleteAdvertisement(req, res);
 
     expect(res.json).toHaveBeenCalledWith({ data: advertisementData, status: "Successfully deleted" });
@@ -37,6 +47,9 @@ test("should handle error while deleting an advertisement", async () => {
     const req = {
         params: {
             id: advertisementData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
