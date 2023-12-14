@@ -24,6 +24,10 @@ exports.deleteUser = async (id) => {
   return await UserModel.findByIdAndDelete(id);
 };
 
+exports.getRole = async (id) => {
+  return await RoleModel.findById(id);
+}
+
 exports.signUp = async (user) => {
   const role = await getUserRole(user);
 

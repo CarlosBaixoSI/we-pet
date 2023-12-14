@@ -4,8 +4,15 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
   {
     name: String,
-    birth_date: Date,
-    phoneNumber: String,
+    email: String,
+    birth_date: {
+      type: Date,
+      default:  null,
+    },
+    phoneNumber: {
+      type: String,
+      default: null,
+    },
     updatedAt: {
       type: Date,
       default: Date.now,
@@ -14,8 +21,10 @@ const userSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    address: String,
-    city: String,
+    city: {
+      type: String,
+      default: null,
+    },
   },
   {
     collection: "users",

@@ -6,7 +6,7 @@ const app = express();
 const shelterRouter = require("./routes/ShelterRoutes");
 require('dotenv').config();
 
-const port = process.env.AUTH_PORT || 3006;
+const port = process.env.SHELTERS_PORT || 3006;
 const i18n = require("./services/i18n/translationService");
 require("./services/mongoose/mongooseService");
 

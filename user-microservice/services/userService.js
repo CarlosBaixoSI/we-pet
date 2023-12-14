@@ -12,8 +12,12 @@ exports.getUserByID = async (id) => {
     return await User.findById(id);
 }
 
-exports.updateUser = async (id, user) => {
-    return await User.findByIdAndUpdate(id, user);
+exports.getUserByEmail = async (email) => {
+    return await User.findOne({ email: email });
+}
+
+exports.updateUser = async (email, user) => {
+    return await User.findOneAndUpdate({ email: email }, user);
 }
 
 exports.deleteUser = async (id) => {

@@ -1,4 +1,6 @@
 const userService = require("../services/userService");
+const axios = require("axios");
+const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
 /**
  * Retrieves all users.
@@ -14,13 +16,7 @@ exports.getAllUsers = async (req, res) => {
   }
 }
 
-/**
- * Creates a new user
- * @param {Object} req - The request object
- * @param {Object} res - The response object
- * @returns {Promise<void>} - A promise that resolves when the user is created
- */
-exports.createUser = async (req, res) => {
+exports.createUserByID = async (req, res) => {
   try {
     const user = await userService.createUser(req.body);
     res.json({ data: user, status: "Success" });
@@ -51,9 +47,20 @@ exports.getUserByID = async (req, res) => {
  */
 exports.updateUser = async (req, res) => {
   try {
-    await userService.updateUser(req.params.id, req.body);
-    const user = await userService.getUserByID(req.params.id);
-    res.json({ data: user, status: "Success" });
+    let token = req.cookies?.token || req.headers["authorization"];
+    try {
+      const user_info = await axios.get(`http://localhost:${gatewayPort}/auth/getUserEmail`, {
+        headers: {
+          Authorization: token
+        }
+      });
+
+      await userService.updateUser(user_info.data.email, req.body);
+      const user = await userService.getUserByEmail(user_info.data.email);
+      res.json({ data: user, status: "Success" });
+    }catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

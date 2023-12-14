@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController.js');
+const { remotebuildexecution } = require('googleapis/build/src/apis/remotebuildexecution/index.js');
 
 //Definition of the routes
 /**
@@ -156,6 +157,44 @@ router.get('/isAdmin', authController.isAdmin);
  *               - password
  */
 router.get('/checktoken', authController.checkToken);
+
+
+/**
+ * @swagger
+ * /auth/getUserID:
+ *   get:
+ *     description: Get user ID
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               user_id: "6564eb4b9aea98e485d136e5"
+ *     tags:
+ *       - Auth
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       description: User credentials for login
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *             required:
+ *               - email
+ *               - password
+ */
+router.get('/getUserEmail', authController.getUserEmail);
+
+router.get('/getRole', authController.getRole);
 
 
 router.get('/', authController.getAllUsers);
