@@ -86,12 +86,22 @@ exports.updateAdvertisement = async (req, res) => {
  */
 exports.deleteAdvertisement = async (req, res) => {
   try {
-    const deleted_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
-    if (!deleted_advertisement) {
-      res.status(400).json({ error: "Advertisement does not exist" });
-    } else {
-      await advertisementService.deleteAdvertisement(req.params.id);
-      res.json({data: deleted_advertisement, status: "Successfully deleted" });
+    const role_info = await axios.get(
+      `http://localhost:${gatewayPort}/auth/getRole`,{
+        headers: {
+          authorization: req.headers.authorization
+        }
+      }
+    )
+
+    if (role_info.data.role === "admin"){
+      const deleted_advertisement = await advertisementService.getAdvertisementByID(req.params.id);
+      if (!deleted_advertisement) {
+        res.status(400).json({ error: "Advertisement does not exist" });
+      } else {
+        await advertisementService.deleteAdvertisement(req.params.id);
+        res.json({data: deleted_advertisement, status: "Successfully deleted" });
+      }
     }
   } catch (err) {
     res.status(500).json({ error: err.message });

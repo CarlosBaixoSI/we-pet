@@ -13,25 +13,27 @@ exports.getAllShelters = async (req, res) => {
 
 exports.createShelter = async (req, res) => {
   let token = req.cookies?.token || req.headers["authorization"];
-  // TODO: add a check to see if the user is an admin
-  // try {
-  //   const user_info = await axios.get(
-  //     `http://localhost:${gatewayPort}/auth/getRole`,
-  //     {
-  //       headers: {
-  //         Authorization: token,
-  //       },
-  //     }
-  //   );
-  //   if (role_info.data.role === "admin") {
-  //     const shelter = await shelterService.createShelter(req.body);
-  //     res.json({ data: shelter, status: "success" });
-  //   } else {
-  //     return res.status(400).json({ error: "Only admin can create shelters" });
-  //   }
-  // } catch {
-  //   return res.status(400).json({ error: "Failed creating shelter" });
-  // }
+
+  try {
+    const role_info = await axios.get(
+      `http://localhost:${gatewayPort}/auth/getRole`,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+
+    if (role_info.data.role === "admin") {
+      const shelter = await shelterService.createShelter(req.body);
+      console.log(shelter);
+      return res.json({ data: shelter, status: "success" });
+    } else {
+      return res.status(400).json({ error: "Only admin can create shelters" });
+    }
+  } catch {
+    return res.status(400).json({ error: "Failed creating shelter" });
+  }
 };
 
 exports.getShelterById = async (req, res) => {
@@ -53,9 +55,21 @@ exports.updateShelter = async (req, res) => {
 };
 
 exports.deleteShelter = async (req, res) => {
+  let token = req.cookies?.token || req.headers["authorization"];
   try {
-    const shelter = await shelterService.deleteShelter(req.params.id);
-    res.json({ data: shelter, status: "success" });
+    const role_info = await axios.get(
+      `http://localhost:${gatewayPort}/auth/getRole`,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    console.log(role_info);
+    if (role_info.data.role === "admin") {
+      const shelter = await shelterService.deleteShelter(req.params.id);
+      return res.json({ data: shelter, status: "success" });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

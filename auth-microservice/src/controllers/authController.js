@@ -82,7 +82,6 @@ exports.getUserEmail = async (req, res) => {
       const decoded = jwt.verify(encryptedToken, JWT_SECRET);
       let user_info = { userId: decoded.user_id, roleId: decoded.role_id };
       try {
-
         const user = await authService.getUserById(user_info.userId);
         return res.status(200).json({ email: user.email, message: "Success" });
       } catch (error) {
@@ -99,26 +98,28 @@ exports.getUserEmail = async (req, res) => {
 };
 
 exports.getRole = async (req, res) => {
-
   let encryptedToken = req.cookies?.token || req.headers["authorization"];
-
   try {
     if (encryptedToken.startsWith("Bearer ")) {
       encryptedToken = encryptedToken.slice(7, encryptedToken.length);
     }
-    const decoded = jwt.verify(encryptedToken, JWT_SECRET);
-    let user_info = { userId: decoded.user_id, roleId: decoded.role_id };
     try {
-      const role = await authService.getRole(user_info.roleId);
-      console.log(role)
-      return res.status(200).json({ role: role.name, message: "Success" });
-    }catch (error) {
+      const decoded = jwt.verify(encryptedToken, JWT_SECRET);
+      let user_info = { userId: decoded.user_id, roleId: decoded.role_id };
+
+      try {
+        const role = await authService.getRole(user_info.roleId);
+        return res.status(200).json({ role: role.name, message: "Success" });
+      } catch (error) {
+        return res.status(500).json({ error: error.message });
+      }
+    } catch (error) {
       return res.status(500).json({ error: error.message });
     }
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
-}
+};
 
 exports.isAdmin = async (req, res) => {
   let token = req.cookies?.token || req.headers["authorization"];
