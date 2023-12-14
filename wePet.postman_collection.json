@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "77c8b523-76f7-4304-9838-07afe760a9ca",
+		"_postman_id": "22301617-bf55-4c08-8151-4e41787aa7e1",
 		"name": "wePet",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26729891"
+		"_exporter_id": "31485734"
 	},
 	"item": [
 		{
@@ -161,6 +161,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -169,7 +176,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjU1Mjc2NSwiZXhwIjoxNzAyNjM5MTY1fQ.uduiT470AzFphTegw1i_SUPnCdrQ7DXQirhQt9V-FD8",
 									"type": "string"
 								}
 							]
@@ -177,13 +184,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/advertisements/656e18bf8f706649ff725f5d",
+							"raw": "{{urlBase}}/advertisements/656b17cb286f35b5e710262d",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"advertisements",
-								"656e18bf8f706649ff725f5d"
+								"656b17cb286f35b5e710262d"
 							]
 						}
 					},
@@ -795,6 +802,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -802,7 +816,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"jooaosilva\",\n    \"password\": \"jooaosilva\",\n    \"email\": \"jooaosilva.si@gmail.com\"\n}",
+							"raw": "{\n    \"username\": \"carlosbeiramar\",\n    \"password\": \"teste\",\n    \"email\": \"carlosbeiramar@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -883,6 +897,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"protocolProfileBehavior": {
@@ -893,7 +914,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"jooaosilva.si@gmail.com\",\n    \"password\": \"testasdasde\"\n}",
+							"raw": "{\n    \"username\": \"carlosbeiramar\",\n    \"password\": \"teste\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1027,6 +1048,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1034,7 +1062,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"jooaosilva.si@gmail.com\"\n}",
+							"raw": "{\n    \"username\": \"carlosbeiramar@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1107,6 +1135,62 @@
 							"path": [
 								"auth",
 								"isAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserEmail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjUxNTA2OCwiZXhwIjoxNzAyNjAxNDY4fQ.G-bhGS4QxCuEiN3xNN0Xm3rcZuVwW3n9bhURH17dbcQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/auth/getUserEmail",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"getUserEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRole",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjUxNTA2OCwiZXhwIjoxNzAyNjAxNDY4fQ.G-bhGS4QxCuEiN3xNN0Xm3rcZuVwW3n9bhURH17dbcQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/auth/getRole",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"auth",
+								"getRole"
 							]
 						}
 					},
@@ -1315,6 +1399,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1331,13 +1422,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/donations/656e18bf8f706649ff725f5d",
+							"raw": "{{urlBase}}/donations/657a0b01cfb3fab412a99106",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"donations",
-								"656e18bf8f706649ff725f5d"
+								"657a0b01cfb3fab412a99106"
 							]
 						}
 					},
@@ -1360,6 +1451,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1377,7 +1475,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"amount\": 1,\r\n  \"shelter_id\": \"656a22e0ded04b4b42b5e8e5\",\r\n  \"createdAt\": \"2023-05-25\",\r\n  \"user_id\": \"656a22e0ded04b4b42b5e8e5\"\r\n}",
+							"raw": "{\r\n  \"amount\": 1,\r\n  \"shelter_id\": \"657adfdbf1ca8f54e68e32ec\",\r\n  \"createdAt\": \"2023-05-25\",\r\n  \"user_id\": \"656e6f00232dd57f79926c4e\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1491,7 +1589,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Animal with id",
+					"name": "DeleteShelter",
 					"event": [
 						{
 							"listen": "test",
@@ -1507,6 +1605,15 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1515,7 +1622,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjU2MDgxMywiZXhwIjoxNzAyNjQ3MjEzfQ.kr49SH6X0ylt6XsX9QB6fWvErCcbtoATnbKz6gzW3ZU",
 									"type": "string"
 								}
 							]
@@ -1523,13 +1630,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{urlBase}}/shelters/6567732028e0100ca9de872c",
+							"raw": "{{urlBase}}/shelters/657aeb128ba8143e9de4529b",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"shelters",
-								"6567732028e0100ca9de872c"
+								"657aeb128ba8143e9de4529b"
 							]
 						}
 					},
@@ -1601,6 +1708,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -1609,7 +1723,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjU1Mjc2NSwiZXhwIjoxNzAyNjM5MTY1fQ.uduiT470AzFphTegw1i_SUPnCdrQ7DXQirhQt9V-FD8",
 									"type": "string"
 								}
 							]
@@ -1618,7 +1732,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"shelter\",\r\n    \"description\": \"shelter\",\r\n    \"email\": \"shelter@gmail.com\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"phone_number\": \"+351 999999999\",\r\n    \"country\": \"Portugal\",\r\n    \"city\": \"Braga\",\r\n    \"postal_code\": \"47050-000\",\r\n    \"address\": \"Rua Manuel faria\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"raw": "{\r\n    \"name\": \"shelter\",\r\n    \"description\": \"shelter\",\r\n    \"email\": \"shelter2111@gmail.com\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"phone_number\": \"+351 999999999\",\r\n    \"country\": \"Portugal\",\r\n    \"city\": \"Braga\",\r\n    \"postal_code\": \"47050-000\",\r\n    \"address\": \"Rua Manuel faria\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1659,8 +1773,20 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1674,14 +1800,18 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{urlBase}}/users/getAll",
+							"raw": "{{urlBase}}/users/",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"users",
-								"getAll"
+								""
 							]
 						}
 					},
@@ -1726,6 +1856,42 @@
 							"path": [
 								"users",
 								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjUxNTA2OCwiZXhwIjoxNzAyNjAxNDY4fQ.G-bhGS4QxCuEiN3xNN0Xm3rcZuVwW3n9bhURH17dbcQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"birth_date\" : \"1997-01-06T00:00:00Z\",\n    \"city\" : \"Braga\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{urlBase}}/users",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"users"
 							]
 						}
 					},
