@@ -5,6 +5,8 @@ const {
     getShelterById,
     updateShelter,
     deleteShelter,
+    verifyShelterByID,
+    getNoneVerifiedShelters
 } = require("../controllers/ShelterController");
 
 const router = express.Router();
@@ -82,8 +84,37 @@ const router = express.Router();
  *         description: The deleted shelter.
  *       404:
  *         description: The shelter was not found.
+ * /verifyShelter/{id}:
+ *   put:
+ *     tags: [Shelters]
+ *     summary: Verify a shelter
+ *     description: Verify a shelter.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: ID of the shelter
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The verified shelter.
+ *       404:
+ *         description: The shelter was not found.
+ * /getNoneVerifiedShelters:
+ *   get:
+ *     tags: [Shelters]
+ *     summary: Get none verified shelters
+ *     description: Retrieve a list of none verified shelters.
+ *     responses:
+ *       200:
+ *         description: A list of none verified shelters.
+ *       404:
+ *         description: The shelters were not found.
  */
 router.route("/").get(getAllShelters).post(createShelter);
+router.route("/getNoneVerifiedShelters").get(getNoneVerifiedShelters);
 router.route("/:id").get(getShelterById).put(updateShelter).delete(deleteShelter);
+router.route("/verifyShelter/:id").put(verifyShelterByID);
 
 module.exports = router;

@@ -1,8 +1,16 @@
 const ShelterModel = require("../models/Shelter");
 
 exports.getAllShelters = async () => {
-  return await ShelterModel.find();
+  return await ShelterModel.find({ isVerified: true });
 };
+
+exports.getNoneVerifiedShelters = async () => {
+  return await ShelterModel.find({ isVerified: false });
+}
+
+exports.verifyShelterByID = async (id) => {
+  return await ShelterModel.findByIdAndUpdate(id, { isVerified: true });
+}
 
 exports.createShelter = async (shelter) => {
   return await ShelterModel.create(shelter);

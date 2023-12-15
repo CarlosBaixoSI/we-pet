@@ -11,9 +11,18 @@ const shelterSchema = new Schema({
     city: String,
     postal_code: String,
     address: String,
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
     },
 });
 
