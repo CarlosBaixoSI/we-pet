@@ -1,3 +1,5 @@
+const MockAdapter = require("axios-mock-adapter");
+const axios = require("axios");
 const {getUserByID} = require('../controllers/userController');
 const UserModel = require('../models/userModel');
 
@@ -14,10 +16,16 @@ const userData = {
     city: "test",
 }
 
+// Create a new instance of the mock adapter
+const mock = new MockAdapter(axios);
+
 test('should get a user', async () => {
     const req = {
         params: {
             id: userData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
@@ -26,6 +34,8 @@ test('should get a user', async () => {
     };
 
     UserModel.findById.mockResolvedValue(userData);
+
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
 
     await getUserByID(req, res);
 
@@ -37,12 +47,18 @@ test('should handle error while getting a user', async () => {
     const req = {
         params: {
             id: userData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
         json: jest.fn(),
         status: jest.fn(() => res)
     };
+
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
+
 
     // Mock the findById method of the UserModel to throw an error
     UserModel.findById.mockRejectedValue(new Error('Failed to get user'));

@@ -5,6 +5,7 @@ const {
     updateUser,
     deleteUser,
     createUserByID,
+    getUserIDByEmail
 } = require("../controllers/userController");
 
 /**
@@ -70,5 +71,6 @@ const router = express.Router();
 
 router.route("/").get(getAllUsers).put(updateUser);
 router.route("/:id").get(getUserByID).delete(deleteUser).post(createUserByID);
+router.route("/getUserIDByEmail").get(getUserIDByEmail);
 
 module.exports = router;

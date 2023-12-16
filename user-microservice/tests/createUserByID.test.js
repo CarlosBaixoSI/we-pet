@@ -1,3 +1,5 @@
+const MockAdapter = require("axios-mock-adapter");
+const axios = require("axios");
 const {createUserByID} = require("../controllers/userController");
 const UserModel = require("../models/userModel");
 
@@ -13,9 +15,15 @@ const userData = {
     city: "test",
 }
 
+// Create a new instance of the mock adapter
+const mock = new MockAdapter(axios);
+
 test("should create an user", async () => {
     const req = {
-        body: userData
+        body: userData,
+        headers: {
+            'authorization': 'Bearer token'
+        }
     };
     const res = {
         json: jest.fn(),
@@ -25,6 +33,8 @@ test("should create an user", async () => {
     // Mock the create method of the UserModel to return the created user data
     UserModel.create.mockResolvedValue(userData);
 
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
+
     await createUserByID(req, res);
 
     expect(res.json).toHaveBeenCalledWith({ data: userData, status: "Success" });
@@ -33,7 +43,10 @@ test("should create an user", async () => {
 
 test("should handle error while creating an user", async () => {
     const req = {
-        body: userData
+        body: userData,
+        headers: {
+            'authorization': 'Bearer token'
+        }
     };
     const res = {
         json: jest.fn(),
@@ -48,5 +61,5 @@ test("should handle error while creating an user", async () => {
     await createUserByID(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.status().json).toHaveBeenCalledWith({ error: errorMessage });
+    expect(res.status().json).toHaveBeenCalledWith({ error: "Failed to create user" });
 })
