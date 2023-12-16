@@ -157,3 +157,12 @@ exports.deleteUser = async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+exports.deleteUserByEmail = async (req, res) => {
+  try {
+    const user = await authService.deleteUserByEmail(req.params.email);
+    return res.status(200).json({ data: user, message: "Success" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}

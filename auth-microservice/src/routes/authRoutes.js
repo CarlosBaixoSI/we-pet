@@ -195,6 +195,8 @@ router.get('/checktoken', authController.checkToken);
 router.get('/getUserEmail', authController.getUserEmail);
 
 router.get('/getRole', authController.getRole);
+router.delete('/deleteUser/:id', authController.deleteUser);
+router.delete('/deleteUserByEmail/:email', authController.deleteUserByEmail);
 
 
 router.get('/', authController.getAllUsers);

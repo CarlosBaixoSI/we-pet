@@ -121,6 +121,10 @@ exports.checkToken = async(encryptedToken) => {
   }
 }
 
+exports.deleteUserByEmail = async(email) => {
+  return await UserModel.findOneAndDelete({ email: email });
+}
+
 //Aux functions
 async function getUserRole(user) {
   if (
@@ -134,5 +138,3 @@ async function getUserRole(user) {
   const userRole = await RoleModel.findOne({ name: "user" });
   return userRole._id;
 }
-
-
