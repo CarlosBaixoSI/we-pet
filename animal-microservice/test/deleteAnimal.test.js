@@ -1,3 +1,5 @@
+const axios = require("axios");
+const MockAdapter = require("axios-mock-adapter");
 const {deleteAnimal} = require("../controllers/AnimalController")
 const AnimalModel = require("../models/Animal");
 
@@ -16,10 +18,16 @@ const animalData = {
     shelter_id: "test"
 };
 
+// Create a new instance of the mock adapter
+const mock = new MockAdapter(axios);
+
 test("should delete an animal", async () => {
     const req = {
         params: {
             id: animalData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
@@ -29,6 +37,8 @@ test("should delete an animal", async () => {
 
     AnimalModel.findById.mockResolvedValue(animalData);
     AnimalModel.findByIdAndDelete.mockResolvedValue(animalData);
+
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
 
     await deleteAnimal(req, res);
 
@@ -40,6 +50,9 @@ test("should handle error while deleting an animal", async () => {
     const req = {
         params: {
             id: animalData._id
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
@@ -50,6 +63,8 @@ test("should handle error while deleting an animal", async () => {
     // Mock the findByIdAndDelete method of the Animal Model to throw an error
     const errorMessage = "Failed to delete advertisement";
     AnimalModel.findByIdAndDelete.mockRejectedValue(new Error(errorMessage));
+
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
 
     await deleteAnimal(req, res);
 

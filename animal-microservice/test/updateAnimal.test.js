@@ -1,3 +1,5 @@
+const axios = require("axios");
+const MockAdapter = require("axios-mock-adapter");
 const {updateAnimal} = require('../controllers/AnimalController');
 const AnimalModel = require('../models/Animal');
 
@@ -23,6 +25,9 @@ const expectedData = {
 
 const error = new Error('Database error');
 
+// Create a new instance of the mock adapter
+const mock = new MockAdapter(axios);
+
 test('should update an animal', async () => {
     const req = {
         params: {
@@ -30,6 +35,9 @@ test('should update an animal', async () => {
         },
         body: {
             name: dataToUpdate.name
+        },
+        headers: {
+            'authorization': 'Bearer token'
         }
     };
     const res = {
@@ -40,6 +48,8 @@ test('should update an animal', async () => {
     // Mock the findByIdAndUpdate method of the Animal Model to return the updated animal data
     AnimalModel.findByIdAndUpdate.mockResolvedValue(expectedData);
     AnimalModel.findById.mockResolvedValue(expectedData)
+
+    mock.onGet(`http://localhost:3000/auth/getRole`).reply(200, { role: 'admin' });
 
     await updateAnimal(req, res);
 

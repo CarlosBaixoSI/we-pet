@@ -14,7 +14,7 @@ const animalSchema = new Schema({
     description: String,
     gender:{
         type: String,
-        enum: Object.values(GenderEnum) 
+        enum: Object.values(GenderEnum)
     },
     user_id: {
         type: Schema.Types.ObjectId,
