@@ -7,7 +7,7 @@ const gatewayPort = process.env.GATEWAY_PORT || 3000;
  *
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
- * @return {Promise<void>} A JSON response with all shelters.
+ * @return {Promise<void>} A JSON response with all verified shelters.
  */
 exports.getAllShelters = async (req, res) => {
   try {

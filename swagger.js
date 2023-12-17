@@ -19,6 +19,7 @@ const options = {
     'animal-microservice/routes/*.js',
     'user-microservice/routes/*.js',
     'auth-microservice/src/routes/*.js',
+    'shelter-microservice/routes/*.js',
   ],
 };
 
@@ -29,7 +30,7 @@ const combinedSwaggerSpec = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(combinedSwaggerSpec));
 
 // Start the server
-const port = 3020;
+const port = 3007;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

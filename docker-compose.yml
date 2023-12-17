@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+
   advertisement-microservice:
     build:
       context: ./advertisement-microservice
@@ -40,11 +46,6 @@ services:
       - MAIL_CLIENT_SECRET=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
       - MAIL_REFRESH_TOKEN=1//04CaIPb5tLnfWCgYIARAAGAQSNwF-L9IrJEzH-uDXYvCkl1KrIVwVtmRRe2k3jBF4i0AOGe27gAXxqMsK9O_XfeBMY9arTZEJSw0
       - MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
-
-  mongodb:
-    image: mongo:latest
-    ports:
-      - 27017:27017
 
   donations-microservice:
     build:
@@ -93,3 +94,19 @@ services:
       - SECRET_KEY=wepet2023
       - ATLAS_URL=mongodb://host.docker.internal:27017/shelters?authSource=admin
       - JWT_SECRET=wepet2023
+
+  swagger:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3007:3007
+    depends_on:
+      - advertisement-microservice
+      - animal-microservice
+      - auth-microservice
+      - donations-microservice
+      - gateway-microservice
+      - shelter-microservice
+      - user-microservice
+

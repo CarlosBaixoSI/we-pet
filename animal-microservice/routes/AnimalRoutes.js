@@ -101,10 +101,6 @@ const router = express.Router();
  *         description: Internal server error
  *       400:
  *         description: Bad request
- *       404:
- *         description: Not found
- *       500:
- *         description: Internal server error
  */
 router.route("/").get(getAllAnimals).post(createAnimal);
 router.route("/:id").get(getAnimalById).put(updateAnimal).delete(deleteAnimal);
