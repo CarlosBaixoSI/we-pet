@@ -7,18 +7,20 @@ const animals_path = "http://localhost:3003/animals/";
 const advertisements_path = "http://localhost:3004/advertisements/";
 const donations_path = "http://localhost:3005/donations/";
 const shelters_path = "http://localhost:3006/shelters/";
-const local_3001 = "http://localhost:3001";
+
+
+const local_3001 = "http://we-pet-auth-microservice-1:3001";
 
 //User management microservice
-const local_3002 = "http://localhost:3002";
+const local_3002 = "http://we-pet-user-microservice-1:3002";
 //Animals microservice
-const local_3003 = "http://localhost:3003";
+const local_3003 = "http://we-pet-animal-microservice-1:3003";
 //Advertisements microservice
-const local_3004 = "http://localhost:3004";
+const local_3004 = "http://we-pet-advertisement-microservice-1:3004";
 //Donation microservice
-const local_3005 = "http://localhost:3005";
+const local_3005 = "http://we-pet-donations-microservice-1:3005";
 //Shelter microservice
-const local_3006 = "http://localhost:3006";
+const local_3006 = "http://we-pet-shelter-microservice-1:3006";
 list_of_ports = [auth_path, users_path, animals_path, advertisements_path, donations_path, shelters_path];
 
 const router = express.Router();
