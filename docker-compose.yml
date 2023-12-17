@@ -103,4 +103,3 @@ services:
       - gateway-microservice
       - shelter-microservice
       - user-microservice
-
