@@ -459,6 +459,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -467,7 +474,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjc0NDQwNiwiZXhwIjoxNzAyODMwODA2fQ.-607DDiS60ZEETaUjW4B3FgrZoi6pvT8dIdtf-paIfs",
 									"type": "string"
 								}
 							]
@@ -476,7 +483,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"teste\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"teste\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"raw": "{\r\n    \"name\": \"updated_name\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"description\": \"teste\",\r\n    \"gender\": \"male\",\r\n    \"size\": \"small\",\r\n    \"animal_type\": \"cat\",\r\n    \"breed\": \"british shorthair\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -484,13 +491,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{urlBase}}/animals/656e219c540b86fc71f0308a",
+							"raw": "{{urlBase}}/animals/657708588d4ee8a2b1bf0f9a",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"animals",
-								"656e219c540b86fc71f0308a"
+								"657708588d4ee8a2b1bf0f9a"
 							]
 						}
 					},
@@ -513,6 +520,13 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"request": {
@@ -521,7 +535,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjc0NDQwNiwiZXhwIjoxNzAyODMwODA2fQ.-607DDiS60ZEETaUjW4B3FgrZoi6pvT8dIdtf-paIfs",
 									"type": "string"
 								}
 							]
@@ -1712,7 +1726,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"exec": [],
+								"exec": [
+									""
+								],
 								"type": "text/javascript"
 							}
 						}
@@ -1723,7 +1739,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YTUxNzI2YWRjZDdlZDZiYjY2NzhlIiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjU1Mjc2NSwiZXhwIjoxNzAyNjM5MTY1fQ.uduiT470AzFphTegw1i_SUPnCdrQ7DXQirhQt9V-FD8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjY0MDg3MiwiZXhwIjoxNzAyNzI3MjcyfQ.XnlzKdSgohEfCm5ohbi0QYauQmQ7gYQSO1gHCFEOVUQ",
 									"type": "string"
 								}
 							]
@@ -1732,7 +1748,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"shelter\",\r\n    \"description\": \"shelter\",\r\n    \"email\": \"shelter2111@gmail.com\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"phone_number\": \"+351 999999999\",\r\n    \"country\": \"Portugal\",\r\n    \"city\": \"Braga\",\r\n    \"postal_code\": \"47050-000\",\r\n    \"address\": \"Rua Manuel faria\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
+							"raw": "{\r\n    \"name\": \"adocao para todos\",\r\n    \"description\": \"shelter\",\r\n    \"email\": \"shelter@gmail.com\",\r\n    \"birth_date\": \"2023-11-29\",\r\n    \"phone_number\": \"+351 999999999\",\r\n    \"country\": \"Portugal\",\r\n    \"city\": \"Braga\",\r\n    \"postal_code\": \"47050-000\",\r\n    \"address\": \"Rua Manuel faria\",\r\n    \"createdAt\": \"2023-11-29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1746,6 +1762,63 @@
 							],
 							"path": [
 								"shelters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Verified Shelters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjY0Njg5OCwiZXhwIjoxNzAyNzMzMjk4fQ.lmX-pmm4vaAhnHz5P_Ab76W5tGLU4kpHSI0xV8FSgGc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/shelters/getNoneVerifiedShelters",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"shelters",
+								"getNoneVerifiedShelters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Shelter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjY0MDg3MiwiZXhwIjoxNzAyNzI3MjcyfQ.XnlzKdSgohEfCm5ohbi0QYauQmQ7gYQSO1gHCFEOVUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/shelters/verifyShelter/657c5b1b57ac0a6da425f9b2",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"shelters",
+								"verifyShelter",
+								"657c5b1b57ac0a6da425f9b2"
 							]
 						}
 					},
@@ -1793,7 +1866,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjRlYjRiOWFlYTk4ZTQ4NWQxMzZlNSIsInJvbGUiOiI2NTY0ZTkwZmRkODg3OWE4NTM5OTNiYWEiLCJpYXQiOjE3MDExMTI2OTcsImV4cCI6MTcwMTE5OTA5N30.MjTXR-oAeldsrI6TZVYV0uXyMXGFK30CYbRc82eJGLI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjczODM3OSwiZXhwIjoxNzAyODI0Nzc5fQ.feIW4RNRqN_MCxJPRwiFCd6UaSsXx1keIzEyokxytn8",
 									"type": "string"
 								}
 							]
@@ -1805,13 +1878,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{urlBase}}/users/",
+							"raw": "{{urlBase}}/users/657c5b1b58e310a3eda064a1",
 							"host": [
 								"{{urlBase}}"
 							],
 							"path": [
 								"users",
-								""
+								"657c5b1b58e310a3eda064a1"
 							]
 						}
 					},
@@ -1892,6 +1965,62 @@
 							],
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjczODM3OSwiZXhwIjoxNzAyODI0Nzc5fQ.feIW4RNRqN_MCxJPRwiFCd6UaSsXx1keIzEyokxytn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/users/657c5b1b58e310a3eda064a1",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"users",
+								"657c5b1b58e310a3eda064a1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjU3YjA0MjE3MjY0ZjJkODNlYTExNzc5Iiwicm9sZV9pZCI6IjY1N2EyODllODQ3OTJjOGUzZWVhN2UzYyIsImlhdCI6MTcwMjczODM3OSwiZXhwIjoxNzAyODI0Nzc5fQ.feIW4RNRqN_MCxJPRwiFCd6UaSsXx1keIzEyokxytn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{urlBase}}/users/657c5b1b58e310a3eda064a1",
+							"host": [
+								"{{urlBase}}"
+							],
+							"path": [
+								"users",
+								"657c5b1b58e310a3eda064a1"
 							]
 						}
 					},
