@@ -64,12 +64,6 @@ services:
       context: ./gateway-microservice
     ports:
       - 3000:3000
-    environment:
-      - GATEWAY_PORT=3000
-      - USERS_PORT=3002
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/users?authSource=admin
-      - JWT_SECRET=wepet2023
 
   shelter-microservice:
     build:

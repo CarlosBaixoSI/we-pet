@@ -1,20 +1,20 @@
-# Use a Node.js base image
 FROM node:14
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
+COPY package.json package-lock.json /app/
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
-COPY . .
+COPY advertisement-microservice/routes/ /app/advertisement-microservice/routes/
+COPY donations-microservice/routes/ /app/donations-microservice/routes/
+COPY animal-microservice/routes/ /app/animal-microservice/routes/
+COPY user-microservice/routes/ /app/user-microservice/routes/
+COPY auth-microservice/src/routes/ /app/auth-microservice/src/routes/
+COPY shelter-microservice/routes/ /app/shelter-microservice/routes/
 
-# Expose the port that the application will listen on
+COPY swagger.js /app
+
 EXPOSE 3007
 
-# Start the application
-CMD [ "node", "app.js" ]
+CMD ["node", "swagger.js"]
