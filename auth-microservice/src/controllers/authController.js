@@ -7,17 +7,13 @@ const gatewayPort = process.env.GATEWAY_PORT;
 exports.signup = async (req, res) => {
   try {
     const userId = await authService.signUp(req.body);
-    try {
-      await axios.post(
-        `http://localhost:${gatewayPort}/users/${req.body.user_id}`,
-        {
-          name: req.body.name,
-          email: req.body.email,
-        }
-      );
-    } catch {
-      return res.status(400).json({ error: "Failed creating user" });
-    }
+    await axios.post(
+      `http://localhost:3002/users/${req.body.user_id}`,
+      {
+        name: req.body.name,
+        email: req.body.email,
+      }
+    );
     return res.json({ data: userId });
   } catch (err) {
     return res.status(500).json({ error: err.message });

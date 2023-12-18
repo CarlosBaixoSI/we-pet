@@ -37,17 +37,8 @@ exports.getAllUsers = async (req, res) => {
  */
 exports.createUserByID = async (req, res) => {
     try{
-      const role_info = await axios.get(
-        `http://localhost:${gatewayPort}/auth/getRole`,{
-          headers: {
-            authorization: req.headers.authorization
-          }
-        }
-      );
-      if (role_info.data.role === "admin"){
-        const user = await userService.createUser(req.body);
-        res.json({ data: user, status: "Success" });
-      }
+      const user = await userService.createUser(req.body);
+      res.json({ data: user, status: "Success" });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
