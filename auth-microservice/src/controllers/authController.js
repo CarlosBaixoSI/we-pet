@@ -94,21 +94,21 @@ exports.getUserEmail = async (req, res) => {
 };
 
 exports.getRole = async (req, res) => {
-  console.log("chjegier");
+
   let encryptedToken = req.cookies?.token || req.headers.authorization;
-  console.log(encryptedToken);
+
   try {
     if (encryptedToken.startsWith("Bearer ")) {
       encryptedToken = encryptedToken.slice(7, encryptedToken.length);
     }
     try {
       const decoded = jwt.verify(encryptedToken, JWT_SECRET);
-      console.log("decode: " + decoded);
+
       let user_info = { userId: decoded.user_id, roleId: decoded.role_id };
-      console.log("user_info: " + user_info);
+
       try {
         const role = await authService.getRole(user_info.roleId);
-        console.log("role: " + role);
+
         return res.status(200).json({ role: role.name, message: "Success" });
       } catch (error) {
         return res.status(500).json({ error: error.message });

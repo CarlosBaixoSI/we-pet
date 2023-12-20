@@ -121,7 +121,7 @@ const ROUTES = [
         }
     },
 
-    
+
     //User microservice
     {
         url: '/users',

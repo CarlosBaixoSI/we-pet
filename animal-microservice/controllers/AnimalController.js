@@ -32,14 +32,12 @@ exports.getAnimalsByShelterId = async (req, res) => {
 exports.createAnimal = async (req, res) => {
   try {
     try {
-      console.log(req.body.user_id)
       // forward the user id to the gateway
       const user_idCheck = await axios.get(`http://we-pet-gateway-microservice-1:3000/users/${req.body.user_id}`,{
         headers: {
           authorization: req.headers.authorization
         }
       })
-      console.log(user_idCheck.data)
 
       if (!user_idCheck.data) {
         return res.status(400).json({ error: "User does not exist1" });

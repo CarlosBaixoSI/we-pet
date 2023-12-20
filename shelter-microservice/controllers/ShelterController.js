@@ -34,7 +34,7 @@ exports.getNoneVerifiedShelters = async (req, res) => {
         }
       }
     )
-    console.log(role_info.data.role)
+
     if (role_info.data.role === "admin") {
       const shelters = await shelterService.getNoneVerifiedShelters();
       return res.json({ data: shelters, status: "success" });
@@ -79,7 +79,7 @@ exports.verifyShelterByID = async (req, res) => {
  */
 exports.createShelter = async (req, res) => {
   let token = req.cookies?.token || req.headers.authorization;
-  console.log("token " + token);
+
 
   // get email by token
   try {
@@ -91,10 +91,10 @@ exports.createShelter = async (req, res) => {
         },
       }
     );
-    console.log("user_email " + user_email);
+
     // get user id by email
     try {
-      console.log("antes");
+
       const user_info = await axios.get(
         `http://we-pet-gateway-microservice-1:${gatewayPort}/users/getUserIDByEmail/${user_email.data.email}`,
         {
@@ -103,11 +103,11 @@ exports.createShelter = async (req, res) => {
           },
         }
       );
-      console.log("depois " + user_info.data.data._id);
+
       const id = user_info.data.data._id;
       req.body.user_id = id;
       const shelter = await shelterService.createShelter(req.body);
-      console.log("shelter " + shelter);
+
       return res.json({ data: shelter, status: "success" });
     } catch {
       return res.status(500).json({ error: "Failed getting user ID" });

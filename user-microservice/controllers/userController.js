@@ -36,7 +36,7 @@ exports.getAllUsers = async (req, res) => {
  * @throws {Error} If there is an error creating the user.
  */
 exports.createUserByID = async (req, res) => {
-    console.log(req.body);
+
     try{
       const user = await userService.createUser(req.body);
       res.json({ data: user, status: "Success" });
@@ -51,7 +51,7 @@ exports.createUserByID = async (req, res) => {
  * @param {Object} res - The response object
  */
 exports.getUserByID = async (req, res) => {
-  console.log("get user by id: " + req.params.id);
+
   try {
     const role_info = await axios.get(
       `http://we-pet-gateway-microservice-1:3000/auth/getRole`,{
@@ -60,7 +60,7 @@ exports.getUserByID = async (req, res) => {
         }
       }
     );
-    console.log("role: " + role_info);
+
     if (role_info.data.role === "admin"){
       const user = await userService.getUserByID(req.params.id);
       return res.json({ data: user, status: "Success" });
@@ -70,7 +70,7 @@ exports.getUserByID = async (req, res) => {
       return res.json({ data: user, status: "Success" });
     }
   } catch (err) {
-    console.log("error: " + err.message);
+
     return res.status(500).json({ error: err.message });
 
   }
@@ -153,10 +153,10 @@ exports.deleteUser = async (req, res) => {
  */
 exports.getUserIDByEmail = async (req, res) => {
   const email  = req.params.email;
-  console.log("email: " + email);
+
   try {
     const userID = await userService.getUserIDByEmail(email);
-    console.log("userID: " + userID);
+
     return res.json({ data: userID, status: "Success" });
   } catch (err) {
     return res.status(500).json({ error: err.message });
