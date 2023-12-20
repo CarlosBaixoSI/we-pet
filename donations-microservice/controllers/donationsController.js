@@ -15,12 +15,21 @@ exports.getAllDonations = async (req, res) => {
 };
 
 exports.insertDonation = async (req, res) => {
+  let token = req.cookies?.token || req.headers.authorization;
+  console.log("token " + token);
   try {
     try {
       // forward the user id to the gateway
       const user_idCheck = await axios.get(
-        `http://localhost:${gatewayPort}/users/${req.body.user_id}`
+        `http://we-pet-gateway-microservice-1:${gatewayPort}/users/${req.body.user_id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
+
+      console.log("user_idCheck " + user_idCheck);
 
       if (!user_idCheck.data) {
         return res.status(400).json({ error: "User does not exist" });
@@ -31,7 +40,12 @@ exports.insertDonation = async (req, res) => {
     try {
       // forward the shelter id to the gateway
       const shelter_idCheck = await axios.get(
-        `http://localhost:${gatewayPort}/shelters/${req.body.shelter_id}`
+        `http://we-pet-gateway-microservice-1:${gatewayPort}/shelters/${req.body.shelter_id}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
 
       if (!shelter_idCheck.data) {
@@ -60,7 +74,7 @@ exports.deleteDonation = async (req, res) => {
   let token = req.cookies?.token || req.headers["authorization"];
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,
       {
         headers: {
           authorization: token,

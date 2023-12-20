@@ -71,6 +71,6 @@ const router = express.Router();
 
 router.route("/").get(getAllUsers).put(updateUser);
 router.route("/:id").get(getUserByID).delete(deleteUser).post(createUserByID);
-router.route("/getUserIDByEmail").get(getUserIDByEmail);
+router.route("/getUserIDByEmail/:email").get(getUserIDByEmail);
 
 module.exports = router;

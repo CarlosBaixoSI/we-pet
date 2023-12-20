@@ -8,7 +8,7 @@ function get_user_info_from_token(token) {
   if (token.startsWith("Bearer ")) {
     token = token.slice(7, token.length);
   }
-  const decoded = jwt.verify(token, JWT_SECRET);
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
   return { userId: decoded.user_id, roleId: decoded.role_id };
 }
 
@@ -36,6 +36,7 @@ exports.getAllUsers = async (req, res) => {
  * @throws {Error} If there is an error creating the user.
  */
 exports.createUserByID = async (req, res) => {
+    console.log(req.body);
     try{
       const user = await userService.createUser(req.body);
       res.json({ data: user, status: "Success" });
@@ -50,14 +51,16 @@ exports.createUserByID = async (req, res) => {
  * @param {Object} res - The response object
  */
 exports.getUserByID = async (req, res) => {
+  console.log("get user by id: " + req.params.id);
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:3000/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
       }
     );
+    console.log("role: " + role_info);
     if (role_info.data.role === "admin"){
       const user = await userService.getUserByID(req.params.id);
       return res.json({ data: user, status: "Success" });
@@ -67,7 +70,9 @@ exports.getUserByID = async (req, res) => {
       return res.json({ data: user, status: "Success" });
     }
   } catch (err) {
+    console.log("error: " + err.message);
     return res.status(500).json({ error: err.message });
+
   }
 }
 
@@ -80,7 +85,7 @@ exports.getUserByID = async (req, res) => {
 exports.updateUser = async (req, res) => {
     let token = req.cookies?.token || req.headers["authorization"];
     try {
-      const user_info = await axios.get(`http://localhost:${gatewayPort}/auth/getUserEmail`, {
+      const user_info = await axios.get(`http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getUserEmail`, {
         headers: {
           'authorization': token
         }
@@ -106,7 +111,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
@@ -116,7 +121,7 @@ exports.deleteUser = async (req, res) => {
       const deleted_user = await userService.getUserByID(req.params.id);
       // delete user also form the auth microservice
       axios.delete(
-        `http://localhost:${gatewayPort}/auth/deleteUserByEmail/${deleted_user.email}`,
+        `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/deleteUserByEmail/${deleted_user.email}`,
       )
       await userService.deleteUser(req.params.id);
       res.json({data: deleted_user, status: "Successfully deleted" });
@@ -126,7 +131,7 @@ exports.deleteUser = async (req, res) => {
         const deleted_user = await getUserByID(req.params.id);
         // delete user also form the auth microservice
         await axios.delete(
-          `http://localhost:${gatewayPort}/auth/deleteUser/${user_info.userId}`,
+          `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/deleteUser/${user_info.userId}`,
         )
         await userService.deleteUser(user_info.userId);
         res.json({data: deleted_user, status: "Successfully deleted" });
@@ -147,11 +152,13 @@ exports.deleteUser = async (req, res) => {
  * @param {Object} res - The response object
  */
 exports.getUserIDByEmail = async (req, res) => {
-  const { email } = req.query;
+  const email  = req.params.email;
+  console.log("email: " + email);
   try {
     const userID = await userService.getUserIDByEmail(email);
-    res.json({ data: userID, status: "Success" });
+    console.log("userID: " + userID);
+    return res.json({ data: userID, status: "Success" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };

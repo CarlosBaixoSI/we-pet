@@ -27,7 +27,7 @@ exports.createAdvertisement = async (req, res) => {
   try {
     // forward the user id to the gateway
     const response = await axios.get(
-      `http://localhost:${gatewayPort}/userExists/${req.body.user_id}`,
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/userExists/${req.body.user_id}`,
     )
     if (!response.data.user_exists) {
       res.status(400).json({ error: "User does not exist" });
@@ -87,7 +87,7 @@ exports.updateAdvertisement = async (req, res) => {
 exports.deleteAdvertisement = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }

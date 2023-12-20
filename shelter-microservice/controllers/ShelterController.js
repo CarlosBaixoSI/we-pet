@@ -28,7 +28,7 @@ exports.getAllShelters = async (req, res) => {
 exports.getNoneVerifiedShelters = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
@@ -54,7 +54,7 @@ exports.getNoneVerifiedShelters = async (req, res) => {
 exports.verifyShelterByID = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
@@ -78,27 +78,36 @@ exports.verifyShelterByID = async (req, res) => {
  * @return {Object} The created shelter and a success status.
  */
 exports.createShelter = async (req, res) => {
-  let token = req.cookies?.token || req.headers["authorization"];
+  let token = req.cookies?.token || req.headers.authorization;
+  console.log("token " + token);
 
   // get email by token
   try {
     const user_email = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getUserEmail`,
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getUserEmail`,
       {
         headers: {
           authorization: token,
         },
       }
     );
+    console.log("user_email " + user_email);
     // get user id by email
     try {
-      const user_info = await axios.post(
-        `http://localhost:${gatewayPort}/users/getUserIDByEmail`,
-        { email: user_email.data.email }
+      console.log("antes");
+      const user_info = await axios.get(
+        `http://we-pet-gateway-microservice-1:${gatewayPort}/users/getUserIDByEmail/${user_email.data.email}`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
       );
+      console.log("depois " + user_info.data.data._id);
       const id = user_info.data.data._id;
       req.body.user_id = id;
       const shelter = await shelterService.createShelter(req.body);
+      console.log("shelter " + shelter);
       return res.json({ data: shelter, status: "success" });
     } catch {
       return res.status(500).json({ error: "Failed getting user ID" });
@@ -148,10 +157,10 @@ exports.updateShelter = async (req, res) => {
  * @return {Object} the shelter data and status if deletion is successful.
  */
 exports.deleteShelter = async (req, res) => {
-  let token = req.cookies?.token || req.headers["authorization"];
+  let token = req.cookies?.token || req.headers.authorization;
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,
       {
         headers: {
           authorization: token,
@@ -162,6 +171,9 @@ exports.deleteShelter = async (req, res) => {
     if (role_info.data.role === "admin") {
       const shelter = await shelterService.deleteShelter(req.params.id);
       return res.json({ data: shelter, status: "success" });
+    }
+    else {
+      return res.status(401).json({ error: "Unauthorized" });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });

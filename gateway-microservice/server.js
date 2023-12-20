@@ -18,5 +18,5 @@ const port = process.env.PORT || 3000;
 setupProxies(app, ROUTES);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://we-pet-gateway-microservice-1:${port}`)
 })

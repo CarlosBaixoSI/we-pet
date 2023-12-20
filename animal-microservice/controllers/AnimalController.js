@@ -32,19 +32,30 @@ exports.getAnimalsByShelterId = async (req, res) => {
 exports.createAnimal = async (req, res) => {
   try {
     try {
+      console.log(req.body.user_id)
       // forward the user id to the gateway
-      const user_idCheck = await axios.get(`http://localhost:${gatewayPort}/users/${req.body.user_id}`,)
+      const user_idCheck = await axios.get(`http://we-pet-gateway-microservice-1:3000/users/${req.body.user_id}`,{
+        headers: {
+          authorization: req.headers.authorization
+        }
+      })
+      console.log(user_idCheck.data)
 
       if (!user_idCheck.data) {
-        return res.status(400).json({ error: "User does not exist" });
+        return res.status(400).json({ error: "User does not exist1" });
       }
 
-    } catch {
-      return res.status(400).json({ error: "User does not exist" });
+    } catch (err) {
+      return res.status(400).json({ error: "User does not exist: " + err.message });
     }
     try {
       // forward the shelter id to the gateway
-      const shelter_idCheck = await axios.get(`http://localhost:${gatewayPort}/shelters/${req.body.shelter_id}`,)
+      const shelter_idCheck = await axios.get(`http://we-pet-gateway-microservice-1:3000/shelters/${req.body.shelter_id}`
+      ,{
+        headers: {
+          authorization: req.headers.authorization
+        }
+      })
 
       if (!shelter_idCheck.data) {
         res.status(400).json({ error: "Shelter does not exist" });
@@ -72,7 +83,7 @@ exports.getAnimalById = async (req, res) => {
 exports.updateAnimal = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
@@ -98,7 +109,7 @@ exports.updateAnimal = async (req, res) => {
 exports.deleteAnimal = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://localhost:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }

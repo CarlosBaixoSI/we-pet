@@ -23,7 +23,7 @@ ENV ATLAS_URL=mongodb://host.docker.internal:27017/authentication?authSource=adm
 ENV JWT_SECRET=wepet2023
 ENV MAIL_CLIENT_ID=881859867128-6aaofekg3f2vs13j7ufpgp571lpj2h2s.apps.googleusercontent.com
 ENV MAIL_CLIENT_SECRET=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
-ENV MAIL_REFRESH_TOKEN=1//04CaIPb5tLnfWCgYIARAAGAQSNwF-L9IrJEzH-uDXYvCkl1KrIVwVtmRRe2k3jBF4i0AOGe27gAXxqMsK9O_XfeBMY9arTZEJSw0
+ENV MAIL_REFRESH_TOKEN=1//04igO8sz8CwhPCgYIARAAGAQSNwF-L9IrB3WjW07CRaeJyW5KzEC4i9r3MOBwijoNiG53VxI3TK8cgVzuoDvkpTG3eG0R2XcrCfY
 ENV MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
 
 # Start the application

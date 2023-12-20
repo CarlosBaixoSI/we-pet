@@ -13,7 +13,8 @@ exports.requestPasswordReset = async (username) => {
 
   //generate a random token with 4 numbers
   const token = Math.random().toString(36).substring(2, 6);
-
+  try {
+    
   await mailService.sendEmail(
     user.email,
     "Password Reset",
@@ -23,7 +24,6 @@ exports.requestPasswordReset = async (username) => {
   user.resetPasswordToken = token;
   user.resetPasswordExpires = Date.now() + 3600000; //1 hour
 
-  try {
     const result = await User.findByIdAndUpdate(user._id, user);
     return { user: user._id.toString(), resetPasswordToken: token };
   } catch (error) {

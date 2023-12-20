@@ -23,3 +23,7 @@ exports.updateUser = async (email, user) => {
 exports.deleteUser = async (id) => {
     return await User.findByIdAndDelete(id);
 }
+
+exports.getUserIDByEmail = async (email) => {
+    return await User.findOne({ email: email });
+}

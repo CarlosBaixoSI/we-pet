@@ -34,10 +34,10 @@ test("should create an animal", async () => {
   };
 
   mock
-    .onGet(`http://localhost:3000/shelters/${req.body.shelter_id}`)
+    .onGet(`http://we-pet-gateway-microservice-1:3000/shelters/${req.body.shelter_id}`)
     .reply(200, { data: "mocked response" });
 
-  mock.onGet(`http://localhost:3000/users/${req.body.user_id}`).reply(200, {
+  mock.onGet(`http://we-pet-gateway-microservice-1:3000/users/${req.body.user_id}`).reply(200, {
     data: "mocked response",
   });
 
