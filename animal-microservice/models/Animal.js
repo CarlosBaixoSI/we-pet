@@ -26,6 +26,7 @@ const animalSchema = new Schema({
       ref: "Shelter",
       required: true,
     },
+    city: String,
     size: String,
     animal_type: String,
     breed: String,

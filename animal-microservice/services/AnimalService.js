@@ -22,3 +22,7 @@ exports.deleteAnimal = async (id) => {
 exports.getAnimalsByShelterId = async (id) => {
   return await AnimalModel.find({ shelter_id: id});
 };
+
+exports.getAnimalsWithFilters = async (filters) => {
+  return await AnimalModel.find(filters);
+};

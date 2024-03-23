@@ -6,6 +6,7 @@ const {
     getAnimalsByShelterId,
     updateAnimal,
     deleteAnimal,
+    getAnimalsWithFilters
 } = require("../controllers/AnimalController");
 
 const router = express.Router();
@@ -103,6 +104,7 @@ const router = express.Router();
  *         description: Bad request
  */
 router.route("/").get(getAllAnimals).post(createAnimal);
+router.route("/filterAnimals").get(getAnimalsWithFilters);
 router.route("/:id").get(getAnimalById).put(updateAnimal).delete(deleteAnimal);
 router.route("/shelter/:id").get(getAnimalsByShelterId);
 
