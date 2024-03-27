@@ -51,10 +51,14 @@ exports.createUserByID = async (req, res) => {
  * @param {Object} res - The response object
  */
 exports.getUserByID = async (req, res) => {
-
   try {
+    let token = req.cookies?.token || req.headers["authorization"];
+    if (!token) {
+      return res.status(401).json({ error: "Authorization header is missing" });
+    }
+
     const role_info = await axios.get(
-      `http://we-pet-gateway-microservice-1:3000/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
         headers: {
           authorization: req.headers.authorization
         }
@@ -72,7 +76,6 @@ exports.getUserByID = async (req, res) => {
   } catch (err) {
 
     return res.status(500).json({ error: err.message });
-
   }
 }
 
@@ -84,21 +87,24 @@ exports.getUserByID = async (req, res) => {
  */
 exports.updateUser = async (req, res) => {
     let token = req.cookies?.token || req.headers["authorization"];
+    if (!token) {
+      return res.status(401).json({ error: "Authorization header is missing" });
+    }
     try {
-      const user_info = await axios.get(`http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getUserEmail`, {
+      let user_info = await axios.get(`http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getUserEmail`, {
         headers: {
           'authorization': token
         }
       });
       try{
         await userService.updateUser(user_info.data.email, req.body);
-        const user = await userService.getUserByEmail(user_info.data.email);
+        let user = await userService.getUserByEmail(user_info.data.email);
         res.json({ data: user, status: "Success" });
       }catch{
         res.status(500).json({ error: "Failed to update the user" });
       }
     }catch (err) {
-      res.status(500).json({ error: "Failed to update the user" });
+      res.status(500).json({ error: "Failed to get user email -> token is invalid" });
     }
   }
 
@@ -109,17 +115,14 @@ exports.updateUser = async (req, res) => {
  * @returns {Promise<void>} - Returns the deleted user
  */
 exports.deleteUser = async (req, res) => {
+  let token = req.cookies?.token || req.headers["authorization"];
+  if (!token) {
+    return res.status(401).json({ error: "Authorization header is missing" });
+  }
   try {
-    const role_info = await axios.get(
-      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
-        headers: {
-          authorization: req.headers.authorization
-        }
-      }
-    );
     if (role_info.data.role === "admin"){
       const deleted_user = await userService.getUserByID(req.params.id);
-      // delete user also form the auth microservice
+      // delete user also from the auth microservice
       axios.delete(
         `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/deleteUserByEmail/${deleted_user.email}`,
       )
@@ -129,7 +132,7 @@ exports.deleteUser = async (req, res) => {
       try{
         let user_info = get_user_info_from_token(req.headers.authorization);
         const deleted_user = await getUserByID(req.params.id);
-        // delete user also form the auth microservice
+        // delete user also from the auth microservice
         await axios.delete(
           `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/deleteUser/${user_info.userId}`,
         )

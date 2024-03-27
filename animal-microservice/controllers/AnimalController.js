@@ -96,12 +96,12 @@ exports.createAnimal = async (req, res) => {
     }
 
     const [userCheck, shelterCheck] = await Promise.all([
-      axios.get(`http://we-pet-gateway-microservice-1:3000/users/${req.body.user_id}`,{
+      axios.get(`http://we-pet-gateway-microservice-1:${gatewayPort}/users/${req.body.user_id}`,{
         headers: {
           authorization: req.headers.authorization
         }
       }),
-      axios.get(`http://we-pet-gateway-microservice-1:3000/shelters/${req.body.shelter_id}`,{
+      axios.get(`http://we-pet-gateway-microservice-1:${gatewayPort}/shelters/${req.body.shelter_id}`,{
         headers: {
           authorization: req.headers.authorization
         }
