@@ -1,12 +1,12 @@
 const express = require('express')
 const axios = require("axios");
 
-const auth_path = "http://localhost:3001/auth/";
-const users_path = "http://localhost:3002/users/";
-const animals_path = "http://localhost:3003/animals/";
-const advertisements_path = "http://localhost:3004/advertisements/";
-const donations_path = "http://localhost:3005/donations/";
-const shelters_path = "http://localhost:3006/shelters/";
+const auth_path = "http://localhost:3001";
+const users_path = "http://localhost:3002";
+const animals_path = "http://localhost:3003";
+const advertisements_path = "http://localhost:3004";
+const donations_path = "http://localhost:3005";
+const shelters_path = "http://localhost:3006";
 
 
 const local_3001 = "http://we-pet-auth-microservice-1:3001";
@@ -33,7 +33,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: local_3001 + "/auth",
+            target: auth_path + "/auth",
             changeOrigin: true,
             pathRewrite: {
                 [`^/auth`]: '',
@@ -45,7 +45,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: local_3001 + "/password/reset",
+            target: auth_path + "/password/reset",
             changeOrigin: true,
             pathRewrite: {
                 [`^/password/reset`]: '',
@@ -59,7 +59,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: local_3003 + "/animals",
+            target: animals_path + "/animals",
             changeOrigin: true,
             pathRewrite: {
                 [`^/animals`]: '',
@@ -113,7 +113,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: local_3006 + "/shelters",
+            target: shelters_path + "/shelters",
             changeOrigin: true,
             pathRewrite: {
                 [`^/shelters`]: '',
@@ -128,7 +128,7 @@ const ROUTES = [
         auth: false,
         creditCheck: false,
         proxy: {
-            target: local_3002 + "/users",
+            target: users_path + "/users",
             changeOrigin: true,
             pathRewrite: {
                 [`^/users`]: '',

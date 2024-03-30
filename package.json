@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon swagger.js"
+    "start": "docker-compose up --build"
   },
   "dependencies": {
     "express": "^4.18.2",
