@@ -31,33 +31,33 @@ services:
       - ATLAS_URL=mongodb://host.docker.internal:27017/animals?authSource=admin
       - JWT_SECRET=wepet2023
 
-  auth-microservice:
-    build:
-      context: ./auth-microservice/src
-    ports:
-      - 3001:3001
-    environment:
-      - GATEWAY_PORT=3000
-      - AUTH_PORT=3001
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/authentication?authSource=admin
-      - JWT_SECRET=wepet2023
-      - MAIL_CLIENT_ID=881859867128-6aaofekg3f2vs13j7ufpgp571lpj2h2s.apps.googleusercontent.com
-      - MAIL_CLIENT_SECRET=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
-      - MAIL_REFRESH_TOKEN=1//04igO8sz8CwhPCgYIARAAGAQSNwF-L9IrB3WjW07CRaeJyW5KzEC4i9r3MOBwijoNiG53VxI3TK8cgVzuoDvkpTG3eG0R2XcrCfY
-      - MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
+  # auth-microservice:
+  #   build:
+  #     context: ./auth-microservice/src
+  #   ports:
+  #     - 3001:3001
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - AUTH_PORT=3001
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb://host.docker.internal:27017/authentication?authSource=admin
+  #     - JWT_SECRET=wepet2023
+  #     - MAIL_CLIENT_ID=881859867128-6aaofekg3f2vs13j7ufpgp571lpj2h2s.apps.googleusercontent.com
+  #     - MAIL_CLIENT_SECRET=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
+  #     - MAIL_REFRESH_TOKEN=1//04igO8sz8CwhPCgYIARAAGAQSNwF-L9IrB3WjW07CRaeJyW5KzEC4i9r3MOBwijoNiG53VxI3TK8cgVzuoDvkpTG3eG0R2XcrCfY
+  #     - MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
 
-  donations-microservice:
-    build:
-      context: ./donations-microservice
-    ports:
-      - 3005:3005
-    environment:
-      - GATEWAY_PORT=3000
-      - DONATIONS_PORT=3005
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/donations?authSource=admin
-      - JWT_SECRET=wepet2023
+  # donations-microservice:
+  #   build:
+  #     context: ./donations-microservice
+  #   ports:
+  #     - 3005:3005
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - DONATIONS_PORT=3005
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb://host.docker.internal:27017/donations?authSource=admin
+  #     - JWT_SECRET=wepet2023
 
   gateway-microservice:
     build:
@@ -89,17 +89,17 @@ services:
       - ATLAS_URL=mongodb://host.docker.internal:27017/users?authSource=admin
       - JWT_SECRET=wepet2023
 
-  swagger:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 3007:3007
-    depends_on:
-      - advertisement-microservice
-      - animal-microservice
-      - auth-microservice
-      - donations-microservice
-      - gateway-microservice
-      - shelter-microservice
-      - user-microservice
+  # swagger:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3007:3007
+  #   depends_on:
+  #     - advertisement-microservice
+  #     - animal-microservice
+  #     - auth-microservice
+  #     - donations-microservice
+  #     - gateway-microservice
+  #     - shelter-microservice
+  #     - user-microservice
