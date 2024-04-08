@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-alpine
 
 # Create the working directory inside the contanier
 WORKDIR /app
