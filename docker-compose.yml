@@ -7,17 +7,17 @@ services:
     ports:
       - 27017:27017
 
-  advertisement-microservice:
-    build:
-      context: ./advertisement-microservice
-    ports:
-      - 3004:3004
-    environment:
-      - GATEWAY_PORT=3000
-      - ADVERTISEMENT_PORT=3004
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/advertisements?authSource=admin
-      - JWT_SECRET=wepet2023
+  # advertisement-microservice:
+  #   build:
+  #     context: ./advertisement-microservice
+  #   ports:
+  #     - 3004:3004
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - ADVERTISEMENT_PORT=3004
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb://host.docker.internal:27017/advertisements?authSource=admin
+  #     - JWT_SECRET=wepet2023
 
   animal-microservice:
     build:
