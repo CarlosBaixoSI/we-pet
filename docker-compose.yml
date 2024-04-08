@@ -28,7 +28,7 @@ services:
       - GATEWAY_PORT=3000
       - ANIMAL_PORT=3003
       - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/animals?authSource=admin
+      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/animals?retryWrites=true&w=majority&appName=wepet
       - JWT_SECRET=wepet2023
 
   # auth-microservice:
@@ -74,7 +74,7 @@ services:
       - GATEWAY_PORT=3000
       - SHELTER_PORT=3006
       - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/shelters?authSource=admin
+      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/shelters?retryWrites=true&w=majority&appName=wepet
       - JWT_SECRET=wepet2023
 
   user-microservice:
@@ -86,7 +86,7 @@ services:
       - GATEWAY_PORT=3000
       - USERS_PORT=3002
       - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb://host.docker.internal:27017/users?authSource=admin
+      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
       - JWT_SECRET=wepet2023
 
   # swagger:
