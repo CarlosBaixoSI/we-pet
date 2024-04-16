@@ -65,29 +65,29 @@ services:
     ports:
       - 80:80
 
-  shelter-microservice:
-    build:
-      context: ./shelter-microservice
-    ports:
-      - 3006:3006
-    environment:
-      - GATEWAY_PORT=3000
-      - SHELTER_PORT=3006
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/shelters?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
+  # shelter-microservice:
+  #   build:
+  #     context: ./shelter-microservice
+  #   ports:
+  #     - 3006:3006
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - SHELTER_PORT=3006
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/shelters?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
 
-  user-microservice:
-    build:
-      context: ./user-microservice
-    ports:
-      - 3002:3002
-    environment:
-      - GATEWAY_PORT=3000
-      - USERS_PORT=3002
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
+  # user-microservice:
+  #   build:
+  #     context: ./user-microservice
+  #   ports:
+  #     - 3002:3002
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - USERS_PORT=3002
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
 
   # swagger:
   #   build:
