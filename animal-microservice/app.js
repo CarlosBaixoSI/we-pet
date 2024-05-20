@@ -18,5 +18,4 @@ app.use("/animals", animalRouter);
 
 app.listen(port, () => console.log(i18n.__("Listening on port %s", port)));
 
-
 module.exports = app;
