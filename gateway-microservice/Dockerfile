@@ -13,10 +13,10 @@ RUN npm install
 COPY . .
 
 # Choose the port for this microservice
-EXPOSE 3000
+EXPOSE 80
 
 # Set environment variables
-ENV GATEWAY_PORT=3000
+ENV GATEWAY_PORT=80
 ENV SECRET_KEY=wepet2023
 ENV JWT_SECRET=wepet2023
 
