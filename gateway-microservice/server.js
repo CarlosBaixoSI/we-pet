@@ -17,4 +17,6 @@ const port = process.env.PORT || 80;
 // setupLogging(app);
 setupProxies(app, ROUTES);
 
-app.listen(port, () => console.log(i18n.__("Listening on port %s", port)));
+app.listen(port, () => {
+    console.log(`Example app listening at http://we-pet-gateway-microservice-1:${port}`)
+})
