@@ -8,6 +8,16 @@ const GenderEnum = Object.freeze({
   });
 
 
+  const StatusEnum = Object.freeze({
+    FIT: 'fit',
+    FAT: 'fat',
+    PLAYFUL: 'playful',
+    AGGRESSIVE: 'aggressive',
+    INJURED: 'injured',
+    PREGNANT: 'pregnant',
+    OTHER: 'other'
+  });
+
 const animalSchema = new Schema({
     name: String,
     birth_date: Date,
@@ -15,6 +25,10 @@ const animalSchema = new Schema({
     gender:{
         type: String,
         enum: Object.values(GenderEnum)
+    },
+    status:{
+        type: String,
+        enum: Object.values(StatusEnum)
     },
     user_id: {
         type: Schema.Types.ObjectId,
@@ -27,6 +41,8 @@ const animalSchema = new Schema({
       required: true,
     },
     city: String,
+    latitude: String,
+    longitude: String,
     size: String,
     animal_type: String,
     breed: String,

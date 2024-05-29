@@ -46,6 +46,9 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
             animal_type: faker.random.arrayElement(['cat', 'dog', 'rabbit']),
             breed: faker.random.word(),
             createdAt: faker.date.past(),
+            status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured', 'pregnant']),
+            latitude: faker.address.latitude(),
+            longitude: faker.address.longitude()
           });
         }
       });

@@ -29,6 +29,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
                         isVerified: true,
                         user_id: "661d8e233509ebb0645ace96",
                         createdAt: Date.now(),
+                        latitude: "41.15",
+                        longitude: "-8.61024"
                     },
                     {
                         name: "Shelter João Silva",
@@ -43,6 +45,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
                         isVerified: true,
                         user_id: "661d8e233509ebb0645ace95",
                         createdAt: Date.now(),
+                        latitude: "41.5518",
+                        longitude: "-8.4229"
                     },
                     {
                         name: "Shelter Carlos Baixo",
@@ -57,6 +61,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
                         isVerified: true,
                         user_id: "661d8e233509ebb0645ace95",
                         createdAt: Date.now(),
+                        latitude: "38.7071",
+                        longitude: "-9.13549"
                     },
                 ]);
 

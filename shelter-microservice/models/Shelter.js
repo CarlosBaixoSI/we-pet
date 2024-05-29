@@ -10,6 +10,8 @@ const shelterSchema = new Schema({
     country: String,
     city: String,
     postal_code: String,
+    latitude: String,
+    longitude: String,
     address: String,
     isVerified: {
         type: Boolean,
