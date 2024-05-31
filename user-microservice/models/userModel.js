@@ -28,6 +28,14 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    profileImage:{
+      type: String,
+      default: null,
+    },
+    profileImageUrl:{
+      type: String,
+      default: null,
+    }
   },
   {
     collection: "users",

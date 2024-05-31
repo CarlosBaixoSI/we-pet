@@ -21,6 +21,10 @@ ENV USERS_PORT=3002
 ENV SECRET_KEY=wepet2023
 ENV ATLAS_URL=mongodb://host.docker.internal:27017/users?authSource=admin
 ENV JWT_SECRET=wepet2023
+ENV AWS_BUCKET_NAME=we-pet
+ENV AWS_BUCKET_REGION=us-east-1
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
 # Start the application
 CMD [ "npm", "start" ]
