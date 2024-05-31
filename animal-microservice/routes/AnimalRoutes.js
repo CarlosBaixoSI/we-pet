@@ -6,7 +6,8 @@ const {
     getAnimalsByShelterId,
     updateAnimal,
     deleteAnimal,
-    getAnimalsWithFilters
+    getAnimalsWithFilters,
+    uploadImage
 } = require("../controllers/AnimalController");
 
 const router = express.Router();
@@ -107,5 +108,7 @@ router.route("/").get(getAllAnimals).post(createAnimal);
 router.route("/filterAnimals").get(getAnimalsWithFilters);
 router.route("/:id").get(getAnimalById).put(updateAnimal).delete(deleteAnimal);
 router.route("/shelter/:id").get(getAnimalsByShelterId);
+router.route("/upload/image/:id").patch(uploadImage);
+
 
 module.exports = router;

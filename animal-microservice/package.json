@@ -11,14 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.588.0",
+    "@aws-sdk/s3-request-presigner": "^3.588.0",
     "axios": "^1.6.2",
     "axios-mock-adapter": "^1.22.0",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.1",
     "faker": "^5.5.3",
     "i18n": "^0.15.1",
     "mongoose": "^6.4.1",
-    "nodemon": "^3.0.2"
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.0.2",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "chai": "^4.3.6",

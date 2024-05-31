@@ -1,6 +1,40 @@
 const animalService = require("../services/AnimalService");
 const axios = require("axios");
 const gatewayPort = process.env.GATEWAY_PORT || 3000;
+const multer = require("multer");
+const sharp = require("sharp");
+const crypto = require("crypto");
+
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+  GetObjectCommand,
+} = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const generateFileName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
+
+const bucketName = process.env.AWS_BUCKET_NAME;
+const region = process.env.AWS_BUCKET_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+const s3Client = new S3Client({
+  region,
+  credentials: {
+    accessKeyId,
+    secretAccessKey,
+  },
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: multer.memoryStorage() });
 
 
 /**
@@ -27,6 +61,12 @@ function getUserInfoFromToken(token) {
 exports.getAllAnimals = async (req, res) => {
   try {
     const animals = await animalService.getAllAnimals();
+    for (let animal of animals) {
+      if (animal.profileImage) {
+        animal.profileImageUrl = await generateSignedUrl(animal.profileImage);
+      }
+    }
+
     return res.json({ data: animals, status: "Success" });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -43,6 +83,11 @@ exports.getAllAnimals = async (req, res) => {
 exports.getAnimalsByShelterId = async (req, res) => {
   try {
     const animals = await animalService.getAnimalsByShelterId(req.params.id);
+    for (let animal of animals) {
+      if (animal.profileImage) {
+        animal.profileImageUrl = await generateSignedUrl(animal.profileImage);
+      }
+    }
     return res.json({ data: animals, status: "Success" });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -132,6 +177,9 @@ exports.createAnimal = async (req, res) => {
 exports.getAnimalById = async (req, res) => {
   try {
     const animal = await animalService.getAnimalById(req.params.id);
+    if (animal.profileImage) {
+      animal.profileImageUrl = await generateSignedUrl(animal.profileImage);
+    }
     return res.json({ data: animal, status: "Success" });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -202,5 +250,56 @@ exports.deleteAnimal = async (req, res) => {
     }
   } catch (err) {
     return res.status(500).json({ error: err.message });
+  }
+};
+
+exports.uploadImage = [
+  upload.single("image"),
+  async (req, res) => {
+    const id = req.params.id;
+
+    try {
+      const file = req.file;
+      const imageName = generateFileName();
+
+      const fileBuffer = await sharp(file.buffer)
+        .resize({ height: 1080, width: 1080, fit: "contain" })
+        .toBuffer();
+
+      console.log("File", file);
+      console.log("ImageName", imageName);
+
+      const uploadParams = {
+        Bucket: bucketName,
+        Key: imageName,
+        Body: fileBuffer,
+        ContentType: file.mimetype,
+      };
+
+      const command = new PutObjectCommand(uploadParams);
+      await s3Client.send(command);
+
+      let animal = await animalService.updateAnimalImageByID(id, imageName);
+
+      if (animal && animal.profileImage) {
+        animal.profileImageUrl = await generateSignedUrl(animal.profileImage);
+      }
+
+      res.json({ data: animal, status: "Success" });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+];
+
+
+const generateSignedUrl = async (key, expiresIn = 60) => {
+  try {
+    const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
+    const url = await getSignedUrl(s3Client, command, { expiresIn });
+    return url;
+  } catch (err) {
+    console.error("Error generating signed URL:", err);
+    throw err;
   }
 };

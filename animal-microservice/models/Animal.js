@@ -50,6 +50,14 @@ const animalSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    profileImage:{
+      type: String,
+      default: null,
+    },
+    profileImageUrl:{
+      type: String,
+      default: null,
+    }
 });
 
 module.exports = mongoose.model("Animal", animalSchema);
