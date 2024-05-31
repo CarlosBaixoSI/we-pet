@@ -6,7 +6,8 @@ const {
     updateShelter,
     deleteShelter,
     verifyShelterByID,
-    getNoneVerifiedShelters
+    getNoneVerifiedShelters,
+    uploadImage
 } = require("../controllers/ShelterController");
 
 const router = express.Router();
@@ -116,5 +117,6 @@ router.route("/").get(getAllShelters).post(createShelter);
 router.route("/getNoneVerifiedShelters").get(getNoneVerifiedShelters);
 router.route("/:id").get(getShelterById).put(updateShelter).delete(deleteShelter);
 router.route("/verifyShelter/:id").put(verifyShelterByID);
+router.route("/upload/image/:id").patch(uploadImage);
 
 module.exports = router;

@@ -19,7 +19,7 @@ EXPOSE 3002
 ENV GATEWAY_PORT=3000
 ENV USERS_PORT=3002
 ENV SECRET_KEY=wepet2023
-ENV ATLAS_URL=mongodb://host.docker.internal:27017/users?authSource=admin
+ENV ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
 ENV JWT_SECRET=wepet2023
 ENV AWS_BUCKET_NAME=we-pet
 ENV AWS_BUCKET_REGION=us-east-1

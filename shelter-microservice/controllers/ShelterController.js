@@ -2,6 +2,40 @@ const shelterService = require("../services/ShelterService");
 const axios = require("axios");
 const gatewayPort = process.env.GATEWAY_PORT || 3000;
 
+const multer = require("multer");
+const sharp = require("sharp");
+const crypto = require("crypto");
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+  GetObjectCommand,
+} = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const generateFileName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
+
+const bucketName = process.env.AWS_BUCKET_NAME;
+const region = process.env.AWS_BUCKET_REGION;
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+const s3Client = new S3Client({
+  region,
+  credentials: {
+    accessKeyId,
+    secretAccessKey,
+  },
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: multer.memoryStorage() });
+
 /**
  * Retrieves all shelters.
  *
@@ -12,6 +46,12 @@ const gatewayPort = process.env.GATEWAY_PORT || 3000;
 exports.getAllShelters = async (req, res) => {
   try {
     const shelters = await shelterService.getAllShelters();
+    for (let shelter of shelters) {
+      if (shelter.profileImage) {
+        shelter.profileImageUrl = await generateSignedUrl(shelter.profileImage);
+      }
+    }
+
     res.json({ data: shelters, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -28,12 +68,13 @@ exports.getAllShelters = async (req, res) => {
 exports.getNoneVerifiedShelters = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,
+      {
         headers: {
-          authorization: req.headers.authorization
-        }
+          authorization: req.headers.authorization,
+        },
       }
-    )
+    );
 
     if (role_info.data.role === "admin") {
       const shelters = await shelterService.getNoneVerifiedShelters();
@@ -42,7 +83,7 @@ exports.getNoneVerifiedShelters = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-}
+};
 
 /**
  * Verifies a shelter by ID.
@@ -54,12 +95,13 @@ exports.getNoneVerifiedShelters = async (req, res) => {
 exports.verifyShelterByID = async (req, res) => {
   try {
     const role_info = await axios.get(
-      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,{
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,
+      {
         headers: {
-          authorization: req.headers.authorization
-        }
+          authorization: req.headers.authorization,
+        },
       }
-    )
+    );
     if (role_info.data.role === "admin") {
       await shelterService.verifyShelterByID(req.params.id);
       const shelters = await shelterService.getAllShelters();
@@ -68,7 +110,7 @@ exports.verifyShelterByID = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-}
+};
 
 /**
  * Creates a new shelter.
@@ -79,7 +121,6 @@ exports.verifyShelterByID = async (req, res) => {
  */
 exports.createShelter = async (req, res) => {
   let token = req.cookies?.token || req.headers.authorization;
-
 
   // get email by token
   try {
@@ -94,7 +135,6 @@ exports.createShelter = async (req, res) => {
 
     // get user id by email
     try {
-
       const user_info = await axios.get(
         `http://we-pet-gateway-microservice-1:${gatewayPort}/users/getUserIDByEmail/${user_email.data.email}`,
         {
@@ -128,6 +168,9 @@ exports.getShelterById = async (req, res) => {
   try {
     const shelter = await shelterService.getShelterById(req.params.id);
     res.json({ data: shelter, status: "success" });
+    if (shelter.profileImage) {
+      shelter.profileImageUrl = await generateSignedUrl(shelter.profileImage);
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -171,11 +214,60 @@ exports.deleteShelter = async (req, res) => {
     if (role_info.data.role === "admin") {
       const shelter = await shelterService.deleteShelter(req.params.id);
       return res.json({ data: shelter, status: "success" });
-    }
-    else {
+    } else {
       return res.status(401).json({ error: "Unauthorized" });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+exports.uploadImage = [
+  upload.single("image"),
+  async (req, res) => {
+    const id = req.params.id;
+
+    try {
+      const file = req.file;
+      const imageName = generateFileName();
+
+      const fileBuffer = await sharp(file.buffer)
+        .resize({ height: 1080, width: 1080, fit: "contain" })
+        .toBuffer();
+
+      console.log("File", file);
+      console.log("ImageName", imageName);
+
+      const uploadParams = {
+        Bucket: bucketName,
+        Key: imageName,
+        Body: fileBuffer,
+        ContentType: file.mimetype,
+      };
+
+      const command = new PutObjectCommand(uploadParams);
+      await s3Client.send(command);
+
+      let shelter = await shelterService.updateShelterImageByID(id, imageName);
+
+      if (shelter && shelter.profileImage) {
+        shelter.profileImageUrl = await generateSignedUrl(shelter.profileImage);
+      }
+
+      res.json({ data: shelter, status: "Success" });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  },
+];
+
+const generateSignedUrl = async (key, expiresIn = 60) => {
+  try {
+    const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
+    const url = await getSignedUrl(s3Client, command, { expiresIn });
+    return url;
+  } catch (err) {
+    console.error("Error generating signed URL:", err);
+    throw err;
   }
 };

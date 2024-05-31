@@ -26,3 +26,26 @@ exports.updateShelter = async (id, shelter) => {
 exports.deleteShelter = async (id) => {
   return await ShelterModel.findByIdAndDelete(id);
 };
+
+exports.updateShelterImageByID = async (id, profileImage) => {
+  try {
+      const updatedShelter = await ShelterModel.findByIdAndUpdate(
+          id,
+          { profileImage: profileImage },
+          { new: true, useFindAndModify: false }
+      );
+
+      if (!updatedShelter) {
+          throw new Error('Shelter not found');
+      }
+
+      console.log("Shelter updated", updatedShelter);
+
+      return updatedShelter;
+  } catch (error) {
+      console.error('Error updating Shelter image:', error);
+      throw error;
+  }
+};
+
+
