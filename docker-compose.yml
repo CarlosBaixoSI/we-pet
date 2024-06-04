@@ -35,21 +35,21 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
-  auth-microservice:
-    build:
-      context: ./auth-microservice/src
-    ports:
-      - 3001:3001
-    environment:
-      - GATEWAY_PORT=3000
-      - AUTH_PORT=3001
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/auth?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
-      - MAIL_CLIENT_ID=881859867128-6aaofekg3f2vs13j7ufpgp571lpj2h2s.apps.googleusercontent.com
-      - MAIL_CLIENT_SECRET=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
-      - MAIL_REFRESH_TOKEN=1//04igO8sz8CwhPCgYIARAAGAQSNwF-L9IrB3WjW07CRaeJyW5KzEC4i9r3MOBwijoNiG53VxI3TK8cgVzuoDvkpTG3eG0R2XcrCfY
-      - MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
+  # auth-microservice:
+  #   build:
+  #     context: ./auth-microservice/src
+  #   ports:
+  #     - 3001:3001
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - AUTH_PORT=3001
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/auth?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
+  #     - MAIL_CLIENT_ID=881859867128-6aaofekg3f2vs13j7ufpgp571lpj2h2s.apps.googleusercontent.com
+  #     - MAIL_CLIENT_SECRET=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
+  #     - MAIL_REFRESH_TOKEN=1//04igO8sz8CwhPCgYIARAAGAQSNwF-L9IrB3WjW07CRaeJyW5KzEC4i9r3MOBwijoNiG53VxI3TK8cgVzuoDvkpTG3eG0R2XcrCfY
+  #     - MAIL_REDIRECT_URI=https://developers.google.com/oauthplayground
 
   # donations-microservice:
   #   build:
@@ -69,37 +69,37 @@ services:
     ports:
       - 3000:3000
 
-  shelter-microservice:
-    build:
-      context: ./shelter-microservice
-    ports:
-      - 3006:3006
-    environment:
-      - GATEWAY_PORT=3000
-      - SHELTER_PORT=3006
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/shelters?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
-      - AWS_BUCKET_NAME=we-pet
-      - AWS_BUCKET_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  # shelter-microservice:
+  #   build:
+  #     context: ./shelter-microservice
+  #   ports:
+  #     - 3006:3006
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - SHELTER_PORT=3006
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/shelters?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
+  #     - AWS_BUCKET_NAME=we-pet
+  #     - AWS_BUCKET_REGION=us-east-1
+  #     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+  #     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
-  user-microservice:
-    build:
-      context: ./user-microservice
-    ports:
-      - 3002:3002
-    environment:
-      - GATEWAY_PORT=3000
-      - USERS_PORT=3002
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
-      - AWS_BUCKET_NAME=we-pet
-      - AWS_BUCKET_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  # user-microservice:
+  #   build:
+  #     context: ./user-microservice
+  #   ports:
+  #     - 3002:3002
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - USERS_PORT=3002
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/users?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
+  #     - AWS_BUCKET_NAME=we-pet
+  #     - AWS_BUCKET_REGION=us-east-1
+  #     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+  #     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
 
   # swagger:
