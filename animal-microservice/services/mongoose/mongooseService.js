@@ -12,8 +12,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     console.log('MongoDB connected');
 
     try {
-      // Clear existing animals
-      await Animal.deleteMany({});
 
       const usersAndShelters = [
         {
@@ -48,7 +46,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
             createdAt: faker.date.past(),
             status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured', 'pregnant']),
             latitude: faker.address.latitude(),
-            longitude: faker.address.longitude()
+            longitude: faker.address.longitude(),
+            profileImage: "08dff8ba8e9a6bb669ca7295d99ac1075fb6fc603d1ce8f8365f2b7099b12a90"
           });
         }
       });
