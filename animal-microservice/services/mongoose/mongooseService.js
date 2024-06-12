@@ -52,9 +52,11 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
         }
       });
 
-      // Insert the generated animal documents
-      await Animal.insertMany(animals);
-
+      const animalList = await Animal.find({});
+      if (animalList.length < 25 ) {
+        // Insert the generated animal documents
+        await Animal.insertMany(animals);
+      }
       console.log("Animals populated successfully");
     } catch (error) {
       console.error("Error populating animals:", error);
