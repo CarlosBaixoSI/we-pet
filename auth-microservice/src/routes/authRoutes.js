@@ -1,8 +1,10 @@
 //using Router, create the routes for the auth microservice
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const authController = require('../controllers/authController.js');
-const { remotebuildexecution } = require('googleapis/build/src/apis/remotebuildexecution/index.js');
+const authController = require("../controllers/authController.js");
+const {
+  remotebuildexecution,
+} = require("googleapis/build/src/apis/remotebuildexecution/index.js");
 
 //Definition of the routes
 /**
@@ -45,12 +47,12 @@ const { remotebuildexecution } = require('googleapis/build/src/apis/remotebuilde
  *               - password
  *               - email
  */
-router.post('/signup', authController.signup);
+router.post("/signup", authController.signup);
 
 /**
  * @swagger
  * /auth/signin:
- *   get:
+ *   post:
  *     description: Authenticate user and generate access token
  *     responses:
  *       200:
@@ -80,7 +82,7 @@ router.post('/signup', authController.signup);
  *               - password
  */
 
-router.get('/signin', authController.signin);
+router.post("/signin", authController.signin);
 
 /**
  * @swagger
@@ -99,7 +101,7 @@ router.get('/signin', authController.signin);
  *     security:
  *       - bearerAuth: []
  */
-router.post('/signout', authController.signout);
+router.post("/signout", authController.signout);
 
 /**
  * @swagger
@@ -116,7 +118,7 @@ router.post('/signout', authController.signout);
  *     tags:
  *       - Auth
  */
-router.get('/isAdmin', authController.isAdmin);
+router.get("/isAdmin", authController.isAdmin);
 //add a route to test the auth microservice
 //this route can only be accessed by a logged in user
 
@@ -156,8 +158,7 @@ router.get('/isAdmin', authController.isAdmin);
  *               - email
  *               - password
  */
-router.get('/checktoken', authController.checkToken);
-
+router.get("/checktoken", authController.checkToken);
 
 /**
  * @swagger
@@ -192,12 +193,11 @@ router.get('/checktoken', authController.checkToken);
  *               - email
  *               - password
  */
-router.get('/getUserEmail', authController.getUserEmail);
+router.get("/getUserEmail", authController.getUserEmail);
 
-router.get('/getRole', authController.getRole);
-router.delete('/deleteUser/:id', authController.deleteUser);
-router.delete('/deleteUserByEmail/:email', authController.deleteUserByEmail);
+router.get("/getRole", authController.getRole);
+router.delete("/deleteUser/:id", authController.deleteUser);
+router.delete("/deleteUserByEmail/:email", authController.deleteUserByEmail);
 
-
-router.get('/', authController.getAllUsers);
+router.get("/", authController.getAllUsers);
 module.exports = router;

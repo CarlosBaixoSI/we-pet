@@ -175,6 +175,15 @@ exports.deleteUser = async (req, res) => {
     return res.status(401).json({ error: "Authorization header is missing" });
   }
   try {
+    const role_info = await axios.get(
+      `http://we-pet-gateway-microservice-1:${gatewayPort}/auth/getRole`,
+      {
+        headers: {
+          authorization: req.headers.authorization,
+        },
+      }
+    );
+
     if (role_info.data.role === "admin") {
       const deleted_user = await userService.getUserByID(req.params.id);
       // delete user also from the auth microservice
