@@ -18,21 +18,21 @@ services:
   #     - ATLAS_URL=mongodb://host.docker.internal:27017/advertisements?authSource=admin
   #     - JWT_SECRET=wepet2023
 
-  animal-microservice:
-    build:
-      context: ./animal-microservice
-    ports:
-      - 3003:3003
-    environment:
-      - GATEWAY_PORT=3000
-      - ANIMAL_PORT=3003
-      - SECRET_KEY=wepet2023
-      - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/animals?retryWrites=true&w=majority&appName=wepet
-      - JWT_SECRET=wepet2023
-      - AWS_BUCKET_NAME=we-pet
-      - AWS_BUCKET_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+  # animal-microservice:
+  #   build:
+  #     context: ./animal-microservice
+  #   ports:
+  #     - 3003:3003
+  #   environment:
+  #     - GATEWAY_PORT=3000
+  #     - ANIMAL_PORT=3003
+  #     - SECRET_KEY=wepet2023
+  #     - ATLAS_URL=mongodb+srv://mailwepet:juHO4n2a0ttGlfT0@wepet.n2ik9nt.mongodb.net/animals?retryWrites=true&w=majority&appName=wepet
+  #     - JWT_SECRET=wepet2023
+  #     - AWS_BUCKET_NAME=we-pet
+  #     - AWS_BUCKET_REGION=us-east-1
+  #     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+  #     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
   auth-microservice:
     build:
