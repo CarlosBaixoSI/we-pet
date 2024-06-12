@@ -299,7 +299,7 @@ exports.uploadImage = [
 ];
 
 
-const generateSignedUrl = async (key, expiresIn = 60) => {
+const generateSignedUrl = async (key, expiresIn = 60000) => {
   try {
     const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
     const url = await getSignedUrl(s3Client, command, { expiresIn });
