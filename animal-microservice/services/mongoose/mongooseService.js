@@ -36,7 +36,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
             name: faker.name.firstName(),
             birth_date: faker.date.between('2010-01-01', '2022-01-01'),
             description: faker.lorem.sentence(),
-            gender: faker.random.arrayElement(['male', 'female', 'other']),
+            gender: faker.random.arrayElement(['male', 'female']),
             user_id: user_id,
             shelter_id: shelter_id,
             city: faker.address.city(),
