@@ -30,6 +30,23 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
       const animals = [];
 
+      const Breeds = [
+        'Labrador Retriever',
+        'German Shepherd',
+        'Golden Retriever',
+        'Bulldog',
+        'Beagle',
+        'Poodle',
+        'Rottweiler',
+        'Yorkshire Terrier',
+        'Boxer',
+        'Dachshund',
+        'Siamese',
+        'Persian',
+        'Maine Coon',
+        'Sphynx',
+      ];
+
       usersAndShelters.forEach(({ user_id, shelter_id }) => {
         for (let i = 0; i < 12; i++) {
           animals.push({
@@ -42,9 +59,9 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
             city: faker.address.city(),
             size: faker.random.arrayElement(['small', 'medium', 'large']),
             animal_type: faker.random.arrayElement(['cat', 'dog', 'rabbit']),
-            breed: faker.random.word(),
+            breed: faker.random.arrayElement(Breeds),
             createdAt: faker.date.past(),
-            status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured', 'pregnant']),
+            status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured']),
             latitude: faker.address.latitude(),
             longitude: faker.address.longitude(),
             profileImage: "08dff8ba8e9a6bb669ca7295d99ac1075fb6fc603d1ce8f8365f2b7099b12a90"
