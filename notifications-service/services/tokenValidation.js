@@ -10,8 +10,7 @@ exports.validateToken = async (token) => {
         },
       }
     );
-    console.log(response);
-    return response;
+    return response.data.role === "admin";
   } catch (error) {
     console.log(error);
     return false;
