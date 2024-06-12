@@ -47,12 +47,30 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
         'Sphynx',
       ];
 
+      const descriptionPhrases = [
+        'loves to play fetch',
+        'is very friendly with kids',
+        'enjoys long walks in the park',
+        'has a calm and gentle demeanor',
+        'is full of energy and loves to run',
+        'is very affectionate and loves to cuddle',
+        'has a beautiful shiny coat',
+        'is well-trained and obedient',
+        'loves to explore new places',
+        'is very curious and adventurous',
+        'enjoys being around people',
+        'is very protective and loyal',
+        'is a quick learner and very intelligent',
+        'is a bit shy but warms up quickly',
+        'has a playful and mischievous personality'
+      ];
+
       usersAndShelters.forEach(({ user_id, shelter_id }) => {
         for (let i = 0; i < 12; i++) {
           animals.push({
             name: faker.name.firstName(),
             birth_date: faker.date.between('2010-01-01', '2022-01-01'),
-            description: faker.lorem.sentence(),
+            description: faker.random.arrayElement(descriptionPhrases),
             gender: faker.random.arrayElement(['male', 'female']),
             user_id: user_id,
             shelter_id: shelter_id,
