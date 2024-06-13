@@ -30,21 +30,56 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
       const animals = [];
 
+      const Breeds = [
+        'Labrador Retriever',
+        'German Shepherd',
+        'Golden Retriever',
+        'Bulldog',
+        'Beagle',
+        'Poodle',
+        'Rottweiler',
+        'Yorkshire Terrier',
+        'Boxer',
+        'Dachshund',
+        'Siamese',
+        'Persian',
+        'Maine Coon',
+        'Sphynx',
+      ];
+
+      const descriptionPhrases = [
+        'loves to play fetch',
+        'is very friendly with kids',
+        'enjoys long walks in the park',
+        'has a calm and gentle demeanor',
+        'is full of energy and loves to run',
+        'is very affectionate and loves to cuddle',
+        'has a beautiful shiny coat',
+        'is well-trained and obedient',
+        'loves to explore new places',
+        'is very curious and adventurous',
+        'enjoys being around people',
+        'is very protective and loyal',
+        'is a quick learner and very intelligent',
+        'is a bit shy but warms up quickly',
+        'has a playful and mischievous personality'
+      ];
+
       usersAndShelters.forEach(({ user_id, shelter_id }) => {
         for (let i = 0; i < 12; i++) {
           animals.push({
             name: faker.name.firstName(),
             birth_date: faker.date.between('2010-01-01', '2022-01-01'),
-            description: faker.lorem.sentence(),
-            gender: faker.random.arrayElement(['male', 'female', 'other']),
+            description: descriptionPhrases.random(),
+            gender: faker.random.arrayElement(['male', 'female']),
             user_id: user_id,
             shelter_id: shelter_id,
             city: faker.address.city(),
             size: faker.random.arrayElement(['small', 'medium', 'large']),
             animal_type: faker.random.arrayElement(['cat', 'dog', 'rabbit']),
-            breed: faker.random.word(),
+            breed: Breeds.random(),
             createdAt: faker.date.past(),
-            status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured', 'pregnant']),
+            status: faker.random.arrayElement(['fit', 'fat', 'playful', 'aggressive', 'injured']),
             latitude: faker.address.latitude(),
             longitude: faker.address.longitude(),
             profileImage: "08dff8ba8e9a6bb669ca7295d99ac1075fb6fc603d1ce8f8365f2b7099b12a90"
