@@ -109,6 +109,8 @@ services:
       - PORT=3008
       - VAPID_PUBLIC_KEY=BOzIIq3snZ8VMvQxSa8gA9HKlWvQRQ-D2EDgk4QZqUBiIWGhHleVY-gJWVH_HzZEWyzVuo-eak2QjIlXHo-CEVc
       - VAPID_PRIVATE_KEY=c4-1d73qXei1WRXN8YO7YCpxRDuOZZ7DTFF5M8YZhOk
+
+      
   # swagger:
   #   build:
   #     context: .
