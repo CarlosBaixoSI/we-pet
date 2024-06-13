@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require("express");
 const axios = require("axios");
 
 const auth_path = "http://ec2-16-170-243-240.eu-north-1.compute.amazonaws.com:3001";
@@ -21,122 +21,118 @@ const local_3004 = "http://we-pet-advertisement-microservice-1:3004";
 const local_3005 = "http://we-pet-donations-microservice-1:3005";
 //Shelter microservice
 const local_3006 = "http://we-pet-shelter-microservice-1:3006";
-list_of_ports = [auth_path, users_path, animals_path, advertisements_path, donations_path, shelters_path];
 
 const router = express.Router();
 
 //module.exports = router;
 
 const ROUTES = [
-    {
-        url: '/auth',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: auth_path + "/auth",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/auth`]: '',
-            },
-        }
+  {
+    url: "/auth",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3001 + "/auth",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/auth`]: "",
+      },
     },
-    {
-        url: '/password/reset',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: auth_path + "/password/reset",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/password/reset`]: '',
-            },
-        }
+  },
+  {
+    url: "/password/reset",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3001 + "/password/reset",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/password/reset`]: "",
+      },
     },
+  },
 
-    //Animals microservice
-    {
-        url: '/animals',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: animals_path + "/animals",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/animals`]: '',
-            },
-        }
+  //Animals microservice
+  {
+    url: "/animals",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3003 + "/animals",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/animals`]: "",
+      },
     },
+  },
 
-    //Advertisements microservice
-    {
-        url: '/advertisements',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: local_3004 + "/advertisements",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/advertisements`]: '',
-            },
-        }
+  //Advertisements microservice
+  {
+    url: "/advertisements",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3004 + "/advertisements",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/advertisements`]: "",
+      },
     },
-    {
-        url: '/advertisements/user/{id}',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: local_3004 + "/advertisements/user/{id}",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/advertisements/user/{id}`]: '',
-            },
-        }
+  },
+  {
+    url: "/advertisements/user/{id}",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3004 + "/advertisements/user/{id}",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/advertisements/user/{id}`]: "",
+      },
     },
+  },
 
-    //Donation microservice
-    {
-        url: '/donations',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: local_3005 + "/donations",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/donations`]: '',
-            },
-        }
+  //Donation microservice
+  {
+    url: "/donations",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: local_3005 + "/donations",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/donations`]: "",
+      },
     },
+  },
 
-    //Shelter microservice
-    {
-        url: '/shelters',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: shelters_path + "/shelters",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/shelters`]: '',
-            },
-        }
+  //Shelter microservice
+  {
+    url: "/shelters",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: shelters_path + "/shelters",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/shelters`]: "",
+      },
     },
+  },
 
-
-    //User microservice
-    {
-        url: '/users',
-        auth: false,
-        creditCheck: false,
-        proxy: {
-            target: users_path + "/users",
-            changeOrigin: true,
-            pathRewrite: {
-                [`^/users`]: '',
-            },
-        }
-    }
-]
-
-
+  //User microservice
+  {
+    url: "/users",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: users_path + "/users",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/users`]: "",
+      },
+    },
+  },
+];
 
 exports.ROUTES = ROUTES;

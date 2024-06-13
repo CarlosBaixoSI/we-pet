@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   mongodb:
     image: mongo:latest
     ports:
@@ -101,7 +100,15 @@ services:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 
-
+  notifications-microservice:
+    build:
+      context: ./notifications-service
+    ports:
+      - 3008:3008
+    environment:
+      - PORT=3008
+      - VAPID_PUBLIC_KEY=BOzIIq3snZ8VMvQxSa8gA9HKlWvQRQ-D2EDgk4QZqUBiIWGhHleVY-gJWVH_HzZEWyzVuo-eak2QjIlXHo-CEVc
+      - VAPID_PRIVATE_KEY=c4-1d73qXei1WRXN8YO7YCpxRDuOZZ7DTFF5M8YZhOk
   # swagger:
   #   build:
   #     context: .
