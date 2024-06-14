@@ -1,13 +1,20 @@
 const express = require("express");
 const axios = require("axios");
 
-const auth_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3001";
-const users_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3002";
-const animals_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3003";
-const advertisements_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3004";
-const donations_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3005";
-const shelters_path = "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3006";
-
+const auth_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3001";
+const users_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3002";
+const animals_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3003";
+const advertisements_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3004";
+const donations_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3005";
+const shelters_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3006";
+const notifications_path =
+  "http://ec2-13-48-1-181.eu-north-1.compute.amazonaws.com:3008";
 
 const local_3001 = "http://we-pet-auth-microservice-1:3001";
 
@@ -130,6 +137,19 @@ const ROUTES = [
       changeOrigin: true,
       pathRewrite: {
         [`^/users`]: "",
+      },
+    },
+  },
+
+  {
+    url: "/notifications",
+    auth: false,
+    creditCheck: false,
+    proxy: {
+      target: notifications_path + "/notifications",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/notifications`]: "",
       },
     },
   },

@@ -22,8 +22,9 @@ var jsonParser = bodyParser.json();
 const clients = new Set();
 
 const notificationQueue = [];
+const router = express.Router();
 
-app.post("/send-notification", jsonParser, (req, res) => {
+router.post("/send-notification", jsonParser, (req, res) => {
   const notification = req.body;
   notificationQueue.push(notification);
 
@@ -47,6 +48,7 @@ app.post("/send-notification", jsonParser, (req, res) => {
   }
 });
 
+app.use("/notifications", router);
 //Create a Http server
 const server = http.createServer(app);
 
@@ -57,7 +59,9 @@ const wss = new WebSocket.Server({ server });
 wss.on("connection", async (ws, req) => {
   // Extract token from query parameters
   const token = new URLSearchParams(req.url.substring(1)).get("token");
+  console.log("token", token);
   const user = await validateToken(token);
+  console.log("user", user);
   if (!user) {
     ws.close(1008, "Invalid token");
     return;
@@ -74,8 +78,8 @@ wss.on("connection", async (ws, req) => {
   });
 
   // Handle WebSocket close event
-  ws.on("close", () => {
-    console.log("WebSocket connection closed");
+  ws.on("close", (code, reason) => {
+    console.log("WebSocket connection closed", code, reason);
     // Remove the client from the set of clients
     clients.delete(ws);
   });
@@ -83,5 +87,5 @@ wss.on("connection", async (ws, req) => {
 
 const PORT = process.env.PORT || 3008;
 server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
