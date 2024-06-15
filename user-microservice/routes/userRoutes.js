@@ -1,12 +1,12 @@
 const express = require("express");
 const {
-    getAllUsers,
-    getUserByID,
-    updateUser,
-    deleteUser,
-    createUserByID,
-    getUserIDByEmail,
-    uploadImage
+  getAllUsers,
+  getUserByID,
+  updateUser,
+  deleteUser,
+  createUserByID,
+  getUserIDByEmail,
+  updateUserById,
 } = require("../controllers/userController");
 
 /**
@@ -71,8 +71,12 @@ const {
 const router = express.Router();
 
 router.route("/").get(getAllUsers).put(updateUser);
-router.route("/:id").get(getUserByID).delete(deleteUser).post(createUserByID);
+router
+  .route("/:id")
+  .get(getUserByID)
+  .delete(deleteUser)
+  .post(createUserByID)
+  .patch(updateUserById);
 router.route("/getUserIDByEmail/:email").get(getUserIDByEmail);
-router.route("/upload/image/:id").patch(uploadImage);
 
 module.exports = router;

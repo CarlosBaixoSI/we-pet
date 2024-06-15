@@ -233,7 +233,7 @@ exports.getUserIDByEmail = async (req, res) => {
   }
 };
 
-exports.uploadImage = [
+exports.updateUserById = [
   upload.single("image"),
   async (req, res) => {
     const id = req.params.id;
@@ -241,6 +241,15 @@ exports.uploadImage = [
     try {
       const file = req.file;
       const imageName = generateFileName();
+      const { name, phoneNumber, city } = req.body;
+
+      let updateParams = {
+        id,
+        profileImage: imageName,
+        name,
+        phoneNumber,
+        city,
+      };
 
       const fileBuffer = await sharp(file.buffer)
         .resize({ height: 1080, width: 1080, fit: "contain" })
@@ -248,6 +257,7 @@ exports.uploadImage = [
 
       console.log("File", file);
       console.log("ImageName", imageName);
+      console.log("params", updateParams);
 
       const uploadParams = {
         Bucket: bucketName,
@@ -259,7 +269,7 @@ exports.uploadImage = [
       const command = new PutObjectCommand(uploadParams);
       await s3Client.send(command);
 
-      let user = await userService.updateUserImageByID(id, imageName);
+      let user = await userService.updateUserById(updateParams);
 
       if (user && user.profileImage) {
         user.profileImageUrl = await generateSignedUrl(user.profileImage);
