@@ -86,6 +86,28 @@ exports.createUserByID = async (req, res) => {
   }
 };
 
+
+/**
+ * Creates a user by ID.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} req.body - The request body containing user data.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response JSON object containing the created user and status.
+ * @throws {Error} If there is an error creating the user.
+ */
+exports.createUser = async (req, res) => {
+  try {
+    const user = await userService.createUser(req.body);
+    if (user.profileImage) {
+      user.profileImageUrl = await generateSignedUrl(user.profileImage);
+    }
+    res.json({ data: user, status: "Success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 /**
  *
  * @param {Object} req - The request object

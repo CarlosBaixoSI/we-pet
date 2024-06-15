@@ -7,6 +7,7 @@ const {
   createUserByID,
   getUserIDByEmail,
   updateUserById,
+  createUser,
 } = require("../controllers/userController");
 
 /**
@@ -70,7 +71,7 @@ const {
  */
 const router = express.Router();
 
-router.route("/").get(getAllUsers).put(updateUser);
+router.route("/").get(getAllUsers).put(updateUser).post(createUser);
 router
   .route("/:id")
   .get(getUserByID)
